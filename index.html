@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfectic Inc - Программы и приложения</title>
+    <title>Perfectic Inc site</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -52,7 +52,8 @@
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
             margin-top: 20px;
         }
 
@@ -68,13 +69,18 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .social-btn.telegram {
-            background: #0088cc;
+        .social-btn.github {
+            background: #333;
             color: white;
         }
 
         .social-btn.youtube {
             background: #ff0000;
+            color: white;
+        }
+
+        .social-btn.telegram {
+            background: #0088cc;
             color: white;
         }
 
@@ -86,7 +92,7 @@
         .section-title {
             text-align: center;
             color: #2c3e50;
-            margin: 40px 0 30px;
+            margin: 50px 0 30px;
             font-size: 2.2rem;
             display: flex;
             align-items: center;
@@ -99,6 +105,9 @@
             color: #7f8c8d;
             margin-bottom: 30px;
             font-size: 1.1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .apps-grid {
@@ -257,6 +266,21 @@
             letter-spacing: 1px;
         }
 
+        .developer-info {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .developer-info h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
         @media (max-width: 768px) {
             .apps-grid {
                 grid-template-columns: 1fr;
@@ -276,8 +300,12 @@
             }
             
             .social-btn {
-                width: 200px;
+                width: 250px;
                 justify-content: center;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -287,17 +315,25 @@
         <header>
             <div class="logo">Perfectic Inc</div>
             <h1><i class="fas fa-laptop-code"></i> Наши программы</h1>
-            <p class="tagline">Профессиональные решения для работы, общения и развлечений</p>
+            <p class="tagline">Профессиональные решения для работы, общения и развлечений от разработчика Kotnot</p>
             
             <div class="social-links">
-                <a href="https://t.me/PodvolKotnot" class="social-btn telegram" target="_blank">
-                    <i class="fab fa-telegram"></i> Telegram: @kotnotpodval
+                <a href="https://github.com/kotnot" class="social-btn github" target="_blank">
+                    <i class="fab fa-github"></i> GitHub: kotnot
                 </a>
                 <a href="https://www.youtube.com/@KotnotDemilxian" class="social-btn youtube" target="_blank">
-                    <i class="fab fa-youtube"></i> YouTube: KotnotDemilxian
+                    <i class="fab fa-youtube"></i> YouTube: @KotnotDemilxian
+                </a>
+                <a href="https://t.me/PodvolKotnot" class="social-btn telegram" target="_blank">
+                    <i class="fab fa-telegram"></i> Telegram: @PodvolKotnot
                 </a>
             </div>
         </header>
+
+        <div class="developer-info">
+            <h2><i class="fas fa-user-circle"></i> О разработчике</h2>
+            <p>Все программы разработаны Kotnot01 - разработчиком, создающим полезные приложения на Python и других технологиях. Следите за обновлениями в соцсетях!</p>
+        </div>
 
         <h2 class="section-title"><i class="fas fa-desktop"></i> Программы для работы</h2>
         <p class="section-subtitle">Профессиональные инструменты для разработки и работы</p>
@@ -309,7 +345,7 @@
                 </div>
                 <div class="app-content">
                     <h2>Gitrex Script IDE Windows</h2>
-                    <p>Интегрированная среда разработки для языка программирования Gitrex Script</p>
+                    <p>Интегрированная среда разработки для языка программирования Gitrex Script с подсветкой синтаксиса и отладчиком</p>
                     <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
                     <a href="https://drive.google.com/file/d/152JWFp_VxJoYsul5VWyEzc_hkuyN0TDJ/view?usp=sharing" class="download-btn">
                         <i class="fas fa-download"></i> Скачать IDE
@@ -323,7 +359,7 @@
                 </div>
                 <div class="app-content">
                     <h2>Browser Zet</h2>
-                    <p>Браузер на Python для быстрого и безопасного серфинга в интернете</p>
+                    <p>Браузер на Python для быстрого и безопасного серфинга в интернете с поддержкой закладок и истории</p>
                     <span class="platform-tag"><i class="fas fa-desktop"></i> Кроссплатформенный</span>
                     <a href="https://drive.google.com/file/d/1iPPWinwG23-p_uoXeFlPoG-t6PQxJ769/view?usp=drive_link" class="download-btn">
                         <i class="fas fa-download"></i> Скачать браузер
@@ -342,7 +378,7 @@
                 </div>
                 <div class="app-content">
                     <h2>Gitrex Message Linux</h2>
-                    <p>Мессенджер для Linux с поддержкой Firebase, облачными сообщениями и файлами</p>
+                    <p>Мессенджер для Linux с поддержкой Firebase, облачными сообщениями, файлами и групповыми чатами</p>
                     <span class="platform-tag"><i class="fab fa-linux"></i> Linux</span>
                     <a href="https://drive.google.com/file/d/1h5vFt_vtsMWBcQRCc5qaLfkSk9oWz39l/view?usp=sharing" class="download-btn">
                         <i class="fas fa-download"></i> Скачать для Linux
@@ -356,7 +392,7 @@
                 </div>
                 <div class="app-content">
                     <h2>Gitrex Message Windows</h2>
-                    <p>Мессенджер для Windows с интуитивным интерфейсом и быстрым обменом сообщениями</p>
+                    <p>Мессенджер для Windows с интуитивным интерфейсом, быстрым обменом сообщениями и эмодзи</p>
                     <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
                     <a href="https://drive.google.com/file/d/1EaW8n8dH3xkk1zzviVmy7sGYgANAn9df/view?usp=drive_link" class="download-btn">
                         <i class="fas fa-download"></i> Скачать для Windows
@@ -375,7 +411,7 @@
                 </div>
                 <div class="app-content">
                     <h2>Симулятор властей РФ</h2>
-                    <p>Стратегическая игра, где вы управляете страной и принимаете важные решения</p>
+                    <p>Стратегическая игра, где вы управляете страной, принимаете важные решения и строите политику</p>
                     <span class="platform-tag"><i class="fas fa-crown"></i> Стратегия</span>
                     <a href="https://drive.google.com/file/d/1UutjYeXB6EfqjinyDyxVUqprqKZkOA09/view?usp=sharing" class="download-btn">
                         <i class="fas fa-download"></i> Скачать игру
@@ -394,7 +430,7 @@
                     </div>
                     <div class="app-content">
                         <h2>GitrexOS Original</h2>
-                        <p>Полнофункциональная версия ОС со всем необходимым для работы и развлечений</p>
+                        <p>Полнофункциональная версия ОС со всем необходимым для работы, развлечений и разработки</p>
                         <span class="platform-tag"><i class="fas fa-microchip"></i> Полная версия</span>
                         <a href="gitrex.img" class="download-btn">
                             <i class="fas fa-download"></i> Скачать (IMG файл)
@@ -426,30 +462,33 @@
                 <i class="fas fa-paper-plane"></i> kotnotdemilxian@gmail.com
             </a>
             
-            <p style="margin-top: 20px;">Или напишите нам в соцсетях:</p>
-            <div class="social-links" style="margin-top: 15px;">
-                <a href="https://t.me/kotnotpodval" class="social-btn telegram" target="_blank">
-                    <i class="fab fa-telegram"></i> Telegram
+            <p style="margin-top: 20px; margin-bottom: 15px;">Или напишите нам в соцсетях:</p>
+            <div class="social-links" style="margin-top: 15px; justify-content: center;">
+                <a href="https://github.com/kotnot" class="social-btn github" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
                 </a>
-                <a href="https://youtube.com/KotnotDemilxian" class="social-btn youtube" target="_blank">
+                <a href="https://www.youtube.com/@KotnotDemilxian" class="social-btn youtube" target="_blank">
                     <i class="fab fa-youtube"></i> YouTube
+                </a>
+                <a href="https://t.me/PodvolKotnot" class="social-btn telegram" target="_blank">
+                    <i class="fab fa-telegram"></i> Telegram
                 </a>
             </div>
         </div>
 
         <footer>
             <p>2022 Perfectic Inc</p>
-            <p style="margin-top: 10px;">
-                <a href="https://t.me/PodvolKotnotl" style="color: #0088cc; text-decoration: none; margin-right: 15px;">
+            <div style="margin-top: 15px;">
+                <a href="https://github.com/kotnot" style="color: #333; text-decoration: none; margin: 0 10px;">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://www.youtube.com/@KotnotDemilxian" style="color: #ff0000; text-decoration: none; margin: 0 10px;">
+                    <i class="fab fa-youtube"></i> YouTube
+                </a>
+                <a href="https://t.me/PodvolKotnot" style="color: #0088cc; text-decoration: none; margin: 0 10px;">
                     <i class="fab fa-telegram"></i> Telegram
                 </a>
-                <a href="https://www.youtube.com/@KotnotDemilxian" style="color: #ff0000; text-decoration: none;">
-                    <i class="fab fa-youtube"></i> YouTube       
-                </a>
-                <a href="https://github.com/kotnot" style="color: #808080; text-decoration: none;">
-                    <i class="fab fa-github"></i> YouTube       
-                </a>
-            </p>
+            </div>
         </footer>
     </div>
 
@@ -465,7 +504,7 @@
             });
         });
         
-        // Плавная прокрутка
+        // Плавная прокрутка для якорей
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -487,6 +526,15 @@
             if(!link.getAttribute('target')) {
                 link.setAttribute('target', '_blank');
                 link.setAttribute('rel', 'noopener noreferrer');
+            }
+        });
+        
+        // Динамическое обновление года в футере
+        document.addEventListener('DOMContentLoaded', function() {
+            const yearElement = document.querySelector('footer p:first-child');
+            if(yearElement) {
+                const currentYear = new Date().getFullYear();
+                yearElement.innerHTML = yearElement.innerHTML.replace('2023', currentYear);
             }
         });
     </script>
