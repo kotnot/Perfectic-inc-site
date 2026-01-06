@@ -366,6 +366,20 @@
                     </a>
                 </div>
             </div>
+            
+            <div class="app-card">
+                <div class="app-icon" style="background: linear-gradient(90deg, #8e44ad, #3498db);">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <div class="app-content">
+                    <h2>ASMOS Constructor</h2>
+                    <p>Мощный конструктор для создания операционных систем на ассемблере.</p>
+                    <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
+                    <a href="ASMOSConstructor_Setup.exe" class="download-btn">
+                        <i class="fas fa-download"></i> Скачать установщик
+                    </a>
+                </div>
+            </div>
         </div>
 
         <h2 class="section-title"><i class="fas fa-comments"></i> Мессенджеры Gitrex Message</h2>
@@ -477,7 +491,7 @@
         </div>
 
         <footer>
-            <p>2022 Perfectic Inc</p>
+            <p>2024 Perfectic Inc</p>
             <div style="margin-top: 15px;">
                 <a href="https://github.com/kotnot" style="color: #333; text-decoration: none; margin: 0 10px;">
                     <i class="fab fa-github"></i> GitHub
@@ -534,7 +548,7 @@
             const yearElement = document.querySelector('footer p:first-child');
             if(yearElement) {
                 const currentYear = new Date().getFullYear();
-                yearElement.innerHTML = yearElement.innerHTML.replace('2023', currentYear);
+                yearElement.textContent = currentYear + ' Perfectic Inc';
             }
         });
     </script>
