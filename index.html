@@ -281,6 +281,122 @@
             font-size: 1.8rem;
         }
 
+        .documentation-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .documentation-section h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .doc-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .doc-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #2c3e50;
+            transition: all 0.3s;
+            border: 1px solid #e9ecef;
+        }
+
+        .doc-link:hover {
+            background: #4285f4;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .doc-link i {
+            font-size: 1.2rem;
+            min-width: 30px;
+        }
+
+        .doc-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .doc-section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .doc-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .doc-section h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            padding-top: 20px;
+        }
+
+        .doc-section p {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .doc-section ul, .doc-section ol {
+            margin: 15px 0 15px 20px;
+            color: #555;
+        }
+
+        .doc-section li {
+            margin-bottom: 8px;
+        }
+
+        .doc-section code {
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+        }
+
+        .back-to-top {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: #f8f9fa;
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 1px solid #e9ecef;
+            margin-top: 20px;
+        }
+
+        .back-to-top:hover {
+            background: #4285f4;
+            color: white;
+        }
+
         @media (max-width: 768px) {
             .apps-grid {
                 grid-template-columns: 1fr;
@@ -306,6 +422,10 @@
             
             .section-title {
                 font-size: 1.8rem;
+            }
+            
+            .doc-links {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -335,6 +455,180 @@
             <p>Все программы разработаны Kotnot01 - разработчиком, создающим полезные приложения на Python и других технологиях. Следите за обновлениями в соцсетях!</p>
         </div>
 
+        <h2 class="section-title"><i class="fas fa-code"></i> Язык программирования Kotnot-C</h2>
+        <p class="section-subtitle">Современный язык программирования для системного и прикладного программирования</p>
+        
+        <div class="apps-grid">
+            <div class="app-card">
+                <div class="app-icon" style="background: #3498db;">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <div class="app-content">
+                    <h2>Kotnot-C</h2>
+                    <p>Современный язык программирования с C-подобным синтаксисом, созданный для разработки системного и прикладного ПО</p>
+                    <span class="platform-tag"><i class="fas fa-desktop"></i> Кроссплатформенный</span>
+                    <a href="https://kotnot.github.io/Kotnot-C/" class="download-btn" style="background: linear-gradient(to right, #3498db, #2980b9);">
+                        <i class="fas fa-external-link-alt"></i> Перейти на сайт Kotnot-C
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="documentation-section">
+            <h2><i class="fas fa-book"></i> Документация</h2>
+            <p class="section-subtitle">Подробная документация по нашим продуктам и языку программирования</p>
+            
+            <div class="doc-links">
+                <a href="#browser-zet-doc" class="doc-link">
+                    <i class="fas fa-globe"></i>
+                    <div>
+                        <strong>Browser Zet</strong>
+                        <small>Документация браузера</small>
+                    </div>
+                </a>
+                
+                <a href="#gitrex-script-ide-doc" class="doc-link">
+                    <i class="fas fa-code"></i>
+                    <div>
+                        <strong>Gitrex Script IDE</strong>
+                        <small>Документация IDE</small>
+                    </div>
+                </a>
+                
+                <a href="#gitrex-message-doc" class="doc-link">
+                    <i class="fas fa-comments"></i>
+                    <div>
+                        <strong>Gitrex Message</strong>
+                        <small>Документация мессенджера</small>
+                    </div>
+                </a>
+                
+                <a href="#gitrexos-doc" class="doc-link">
+                    <i class="fas fa-laptop-code"></i>
+                    <div>
+                        <strong>GitrexOS</strong>
+                        <small>Документация ОС</small>
+                    </div>
+                </a>
+                
+                <a href="#kotnot-c-doc" class="doc-link">
+                    <i class="fas fa-cogs"></i>
+                    <div>
+                        <strong>Kotnot-C</strong>
+                        <small>Документация языка</small>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="doc-content">
+            <h2 class="section-title"><i class="fas fa-file-alt"></i> Полная документация</h2>
+            
+            <div class="doc-section" id="browser-zet-doc">
+                <h3><i class="fas fa-globe"></i> Browser Zet - Документация</h3>
+                <p><strong>Версия:</strong> 1.0</p>
+                <p><strong>Платформа:</strong> Windows</p>
+                
+                <h4>Установка:</h4>
+                <ol>
+                    <li>Скачайте установочный файл</li>
+                    <li>Запустите установщик</li>
+                    <li>Следуйте инструкциям мастера установки</li>
+                    <li>После установки ярлык появится на рабочем столе</li>
+                </ol>
+                
+                <a href="#" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i> Наверх
+                </a>
+            </div>
+            
+            <div class="doc-section" id="gitrex-script-ide-doc">
+                <h3><i class="fas fa-code"></i> Gitrex Script IDE - Документация</h3>
+                <p><strong>Версия:</strong> 1.0</p>
+                <p><strong>Платформа:</strong> Windows</p>
+                
+                <h4>Пример кода:</h4>
+                <pre style="background: #f8f9fa; padding: 15px; border-radius: 8px; overflow: auto;">
+function main() {
+    print("Hello, Gitrex!");
+    let x = 10;
+    for(let i = 0; i < x; i++) {
+        print("Iteration: " + i);
+    }
+}</pre>
+                
+                <a href="#" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i> Наверх
+                </a>
+            </div>
+            
+            <div class="doc-section" id="gitrex-message-doc">
+                <h3><i class="fas fa-comments"></i> Gitrex Message - Документация</h3>
+                <p><strong>Версия:</strong> 1.4</p>
+                <p><strong>Платформы:</strong> Windows, Linux</p>
+                
+                <h4>Настройка:</h4>
+                <ol>
+                    <li>Создайте аккаунт или войдите</li>
+                    <li>Настройте профиль (аватар, статус)</li>
+                    <li>Добавьте контакты по username</li>
+                    <li>Начните общение в личных или групповых чатах</li>
+                </ol>
+                
+                <h4>Безопасность:</h4>
+                <p>Все сообщения шифруются с помощью алгоритма AES-256. Ключи шифрования хранятся только на устройствах пользователей.</p>
+                
+                <a href="#" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i> Наверх
+                </a>
+            </div>
+            
+            <div class="doc-section" id="gitrexos-doc">
+                <h3><i class="fas fa-laptop-code"></i> GitrexOS - Документация</h3>
+                <p><strong>Версии:</strong> Original (полная), Lite (облегченная)</p>
+                <p><strong>Архитектура:</strong> x86_64</p>
+                
+                <h4>Установка:</h4>
+                <ol>
+                    <li>Скачайте образ (IMG или BIN)</li>
+                    <li>Запишите на USB-накопитель с помощью Rufus или аналогичной программы</li>
+                    <li>Загрузитесь с USB</li>
+                    <li>Следуйте инструкциям установщика</li>
+                </ol>
+                
+                <a href="#" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i> Наверх
+                </a>
+            </div>
+            
+            <div class="doc-section" id="kotnot-c-doc">
+                <h3><i class="fas fa-cogs"></i> Kotnot-C - Документация</h3>
+                <p><strong>Версия языка:</strong> 1.1</p>
+                <p><strong>Компилятор:</strong> kc (Kotnot-C Compiler)</p>
+                
+                <h4>Пример программы:</h4>
+                <pre style="background: #f8f9fa; padding: 15px; border-radius: 8px; overflow: auto;">
+// Пример программы на Kotnot-C
+import std.io;
+
+func main() -> int {
+    println("Hello, Kotnot-C!");
+    
+    let x: int = 10;
+    let y = 20; // автоматическое определение типа
+    
+    let sum = x + y;
+    println("Sum: {}", sum);
+    
+    return 0;
+}</pre>
+                
+                <a href="#" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i> Наверх
+                </a>
+            </div>
+        </div>
+
         <h2 class="section-title"><i class="fas fa-desktop"></i> Программы для работы</h2>
         <p class="section-subtitle">Профессиональные инструменты для разработки и работы</p>
         
@@ -360,7 +654,7 @@
                 <div class="app-content">
                     <h2>Browser Zet</h2>
                     <p>Браузер на Python для быстрого и безопасного серфинга в интернете с поддержкой закладок и истории</p>
-                    <span class="platform-tag"><i class="fas fa-desktop"></i> Кроссплатформенный</span>
+                    <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
                     <a href="https://drive.google.com/file/d/1iPPWinwG23-p_uoXeFlPoG-t6PQxJ769/view?usp=drive_link" class="download-btn">
                         <i class="fas fa-download"></i> Скачать браузер
                     </a>
@@ -388,7 +682,7 @@
                 <div class="app-content">
                     <h2>ZetoShop</h2>
                     <p>Графический редактор для обработки изображений с различными инструментами, фильтрами и эффектами</p>
-                    <span class="platform-tag"><i class="fas fa-desktop"></i> Кроссплатформенный</span>
+                    <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
                     <a href="https://drive.google.com/file/d/1bN6nZqRIEPNZc85v3MSaIXtVOApoi9Ur/view?usp=sharing" class="download-btn">
                         <i class="fas fa-download"></i> Скачать ZetoShop
                     </a>
@@ -440,7 +734,7 @@
                 <div class="app-content">
                     <h2>Конструктор карт</h2>
                     <p>Создавайте и редактируйте карты в браузере. Игра с локальным сохранением, не требует установки.</p>
-                    <span class="platform-tag"><i class="fas fa-globe"></i> Веб-игра</span>
+                    <span class="platform-tag"><i class="fas fa-globe"></i> Кроссплатформенный</span>
                     <a href="https://kotnot.github.io/MapGame/" class="download-btn" style="background: linear-gradient(to right, #9b59b6, #8e44ad);">
                         <i class="fas fa-gamepad"></i> Открыть конструктор карт
                     </a>
@@ -454,7 +748,7 @@
                 <div class="app-content">
                     <h2>Симулятор властей РФ</h2>
                     <p>Стратегическая игра, где вы управляете страной, принимаете важные решения и строите политику</p>
-                    <span class="platform-tag"><i class="fas fa-crown"></i> Стратегия</span>
+                    <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
                     <a href="https://drive.google.com/file/d/1UutjYeXB6EfqjinyDyxVUqprqKZkOA09/view?usp=sharing" class="download-btn">
                         <i class="fas fa-download"></i> Скачать игру
                     </a>
@@ -482,7 +776,7 @@
                 <div class="app-content">
                     <h2>Monster Fire</h2>
                     <p>Захватывающий шутер, где вы сражаетесь с монстрами в огненном мире. Игра доступна онлайн в браузере.</p>
-                    <span class="platform-tag"><i class="fas fa-globe"></i> Веб-игра</span>
+                    <span class="platform-tag"><i class="fas fa-globe"></i> Кроссплатформенный</span>
                     <a href="https://kotnot.github.io/MonsterFire/" class="download-btn" style="background: linear-gradient(to right, #e74c3c, #c0392b);">
                         <i class="fas fa-gamepad"></i> Играть онлайн
                     </a>
@@ -582,7 +876,14 @@
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
+                if(targetId === '#') {
+                    // Прокрутка наверх для ссылок с #
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    return;
+                }
                 
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
@@ -608,6 +909,19 @@
             if(yearElement) {
                 const currentYear = new Date().getFullYear();
                 yearElement.textContent = currentYear + ' Perfectic Inc';
+            }
+            
+            // Проверка якоря в URL для автоматической прокрутки
+            if(window.location.hash) {
+                const targetElement = document.querySelector(window.location.hash);
+                if(targetElement) {
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }, 100);
+                }
             }
         });
     </script>
