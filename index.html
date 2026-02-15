@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfectic Inc site</title>
+    <title>Perfectic Inc - Главная</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -24,6 +24,54 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+        }
+
+        /* Навигация */
+        .main-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .nav-btn.main {
+            background: #4285f4;
+            color: white;
+        }
+
+        .nav-btn.doc {
+            background: #34a853;
+            color: white;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Страницы */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
         }
 
         header {
@@ -281,58 +329,105 @@
             font-size: 1.8rem;
         }
 
-        .documentation-section {
+        /* Стили для страницы документации */
+        .doc-page {
             background: white;
             border-radius: 15px;
-            padding: 30px;
-            margin: 40px 0;
+            padding: 40px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
         }
 
-        .documentation-section h2 {
-            color: #2c3e50;
-            margin-bottom: 25px;
+        .doc-header {
             text-align: center;
-            font-size: 1.8rem;
+            margin-bottom: 40px;
         }
 
-        .doc-links {
+        .doc-header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .doc-header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        .doc-search {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .doc-search input {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .doc-search input:focus {
+            outline: none;
+            border-color: #4285f4;
+            box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
+        }
+
+        .doc-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
         }
 
-        .doc-link {
+        .doc-sidebar {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .doc-sidebar h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .doc-menu {
+            list-style: none;
+        }
+
+        .doc-menu li {
+            margin-bottom: 10px;
+        }
+
+        .doc-menu a {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
+            gap: 10px;
+            padding: 10px 15px;
+            color: #555;
             text-decoration: none;
-            color: #2c3e50;
+            border-radius: 8px;
             transition: all 0.3s;
-            border: 1px solid #e9ecef;
         }
 
-        .doc-link:hover {
+        .doc-menu a:hover,
+        .doc-menu a.active {
             background: #4285f4;
             color: white;
-            transform: translateY(-3px);
         }
 
-        .doc-link i {
-            font-size: 1.2rem;
-            min-width: 30px;
+        .doc-menu a i {
+            width: 20px;
         }
 
         .doc-content {
             background: white;
             border-radius: 15px;
             padding: 30px;
-            margin: 40px 0;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
         }
 
         .doc-section {
@@ -347,11 +442,23 @@
             padding-bottom: 0;
         }
 
-        .doc-section h3 {
+        .doc-section h2 {
             color: #2c3e50;
             margin-bottom: 20px;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             padding-top: 20px;
+        }
+
+        .doc-section h3 {
+            color: #2c3e50;
+            margin: 25px 0 15px;
+            font-size: 1.4rem;
+        }
+
+        .doc-section h4 {
+            color: #2c3e50;
+            margin: 20px 0 10px;
+            font-size: 1.2rem;
         }
 
         .doc-section p {
@@ -377,6 +484,39 @@
             color: #e74c3c;
         }
 
+        .doc-section pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            overflow: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            border: 1px solid #e9ecef;
+            margin: 15px 0;
+        }
+
+        .doc-section pre code {
+            background: none;
+            padding: 0;
+            color: #333;
+        }
+
+        .doc-note {
+            background: #e8f4fc;
+            border-left: 4px solid #4285f4;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+
+        .doc-warning {
+            background: #fff3e0;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+
         .back-to-top {
             display: inline-flex;
             align-items: center;
@@ -395,6 +535,49 @@
         .back-to-top:hover {
             background: #4285f4;
             color: white;
+        }
+
+        .development-badge {
+            display: inline-block;
+            background: #f39c12;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        .hotkey-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .hotkey-table th {
+            background: #f8f9fa;
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .hotkey-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+        }
+
+        .hotkey-table tr:hover {
+            background: #f5f5f5;
+        }
+
+        .hotkey-section {
+            margin: 25px 0 15px;
+            font-weight: bold;
+            color: #4285f4;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
         }
 
         @media (max-width: 768px) {
@@ -424,192 +607,333 @@
                 font-size: 1.8rem;
             }
             
-            .doc-links {
+            .doc-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .doc-sidebar {
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .doc-page {
+                padding: 20px;
+            }
+            
+            .doc-header h1 {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <div class="logo">Perfectic Inc</div>
-            <h1><i class="fas fa-laptop-code"></i> Наши программы</h1>
-            <p class="tagline">Профессиональные решения для работы, общения и развлечений от разработчика Kotnot</p>
-            
-            <div class="social-links">
-                <a href="https://github.com/kotnot" class="social-btn github" target="_blank">
-                    <i class="fab fa-github"></i> GitHub: kotnot
-                </a>
-                <a href="https://www.youtube.com/@Kotnot01" class="social-btn youtube" target="_blank">
-                    <i class="fab fa-youtube"></i> YouTube: @Kotnot01
-                </a>
-                <a href="https://t.me/KotnotLive" class="social-btn telegram" target="_blank">
-                    <i class="fab fa-telegram"></i> Telegram: @KotnotLive
-                </a>
-            </div>
-        </header>
+        <!-- Навигация -->
+        <nav class="main-nav">
+            <button class="nav-btn main" onclick="showPage('main')">
+                <i class="fas fa-home"></i> Главная
+            </button>
+            <button class="nav-btn doc" onclick="showPage('doc')">
+                <i class="fas fa-book"></i> Документация
+            </button>
+        </nav>
 
-        <div class="developer-info">
-            <h2><i class="fas fa-user-circle"></i> О разработчике</h2>
-            <p>Все программы разработаны Kotnot01 - разработчиком, создающим полезные приложения на Python и других технологиях. Следите за обновлениями в соцсетях!</p>
-        </div>
-
-        <h2 class="section-title"><i class="fas fa-code"></i> Язык программирования Kotnot-C</h2>
-        <p class="section-subtitle">Современный язык программирования для системного и прикладного программирования</p>
-        
-        <div class="apps-grid">
-            <div class="app-card">
-                <div class="app-icon" style="background: #3498db;">
-                    <i class="fas fa-cogs"></i>
+        <!-- Главная страница -->
+        <div id="main-page" class="page active">
+            <header>
+                <div class="logo">Perfectic Inc</div>
+                <h1><i class="fas fa-laptop-code"></i> Наши программы</h1>
+                <p class="tagline">Профессиональные решения для работы, общения и развлечений от разработчика Kotnot</p>
+                
+                <div class="social-links">
+                    <a href="https://github.com/kotnot" class="social-btn github" target="_blank">
+                        <i class="fab fa-github"></i> GitHub: kotnot
+                    </a>
+                    <a href="https://www.youtube.com/@kotnot01" class="social-btn youtube" target="_blank">
+                        <i class="fab fa-youtube"></i> YouTube: @kotnot01
+                    </a>
+                    <a href="https://t.me/KotnotLive" class="social-btn telegram" target="_blank">
+                        <i class="fab fa-telegram"></i> Telegram: @KotnotLive
+                    </a>
                 </div>
-                <div class="app-content">
-                    <h2>Kotnot-C</h2>
-                    <p>Современный язык программирования с C-подобным синтаксисом, созданный для разработки системного и прикладного ПО</p>
-                    <span class="platform-tag"><i class="fas fa-desktop"></i> Кроссплатформенный</span>
-                    <a href="https://kotnot.github.io/Kotnot-C/" class="download-btn" style="background: linear-gradient(to right, #3498db, #2980b9);">
-                        <i class="fas fa-external-link-alt"></i> Перейти на сайт Kotnot-C
+            </header>
+
+            <div class="developer-info">
+                <h2><i class="fas fa-user-circle"></i> О разработчике</h2>
+                <p>Все программы разработаны Kotnot - разработчиком, создающим полезные приложения. Следите за обновлениями в соцсетях!</p>
+            </div>
+
+            <h2 class="section-title"><i class="fas fa-code"></i> Язык программирования Kotnot-C</h2>
+            <p class="section-subtitle">Современный язык программирования для системного и прикладного программирования</p>
+            
+            <div class="apps-grid">
+                <div class="app-card">
+                    <div class="app-icon" style="background: #3498db;">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="app-content">
+                        <h2>Kotnot-C</h2>
+                        <p>Современный язык программирования с C-подобным синтаксисом, созданный для разработки системного и прикладного ПО</p>
+                        <span class="platform-tag"><i class="fas fa-desktop"></i> Кроссплатформенный</span>
+                        <a href="https://kotnot.github.io/Kotnot-C/" class="download-btn" style="background: linear-gradient(to right, #3498db, #2980b9);">
+                            <i class="fas fa-external-link-alt"></i> Перейти на сайт Kotnot-C
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title"><i class="fas fa-desktop"></i> Программы для работы</h2>
+            <p class="section-subtitle">Профессиональные инструменты для разработки и работы</p>
+            
+            <div class="apps-grid">
+                <div class="app-card">
+                    <div class="app-icon" style="background: #3498db;">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="app-content">
+                        <h2>Kotnot-C Компилятор</h2>
+                        <p>Официальный компилятор для языка программирования Kotnot-C. Поддерживает все современные возможности языка.</p>
+                        <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
+                        <a href="https://drive.google.com/file/d/1JA6Pr2IM_-ye6QBONRlFh4EIWS4xueVa/view?usp=sharing" class="download-btn" style="background: linear-gradient(to right, #3498db, #2980b9);">
+                            <i class="fas fa-download"></i> Скачать компилятор
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="app-content">
+                        <h2>Browser Zet</h2>
+                        <p>Браузер для быстрого и безопасного серфинга в интернете с поддержкой закладок и истории</p>
+                        <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
+                        <a href="https://drive.google.com/file/d/1iPPWinwG23-p_uoXeFlPoG-t6PQxJ769/view?usp=drive_link" class="download-btn">
+                            <i class="fas fa-download"></i> Скачать браузер
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon" style="background: #8e44ad;">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="app-content">
+                        <h2>ASMOS Constructor</h2>
+                        <p>Мощный конструктор для создания операционных систем на ассемблере.</p>
+                        <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
+                        <a href="ASMOSConstructor_Setup.exe" class="download-btn">
+                            <i class="fas fa-download"></i> Скачать установщик
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon" style="background: #31a8ff;">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="app-content">
+                        <h2>ZetoShop</h2>
+                        <p>Графический редактор для обработки изображений с различными инструментами, фильтрами и эффектами</p>
+                        <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
+                        <a href="https://drive.google.com/file/d/1bN6nZqRIEPNZc85v3MSaIXtVOApoi9Ur/view?usp=sharing" class="download-btn">
+                            <i class="fas fa-download"></i> Скачать ZetoShop
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title"><i class="fas fa-comments"></i> Мессенджеры Gitrex Message</h2>
+            <p class="section-subtitle">Общайтесь безопасно с помощью наших мессенджеров</p>
+            
+            <div class="apps-grid">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fab fa-linux"></i>
+                    </div>
+                    <div class="app-content">
+                        <h2>Gitrex Message Linux</h2>
+                        <p>Мессенджер для Linux с поддержкой облачных сообщений, файлами и групповыми чатами</p>
+                        <span class="platform-tag"><i class="fab fa-linux"></i> Linux</span>
+                        <a href="https://drive.google.com/file/d/1h5vFt_vtsMWBcQRCc5qaLfkSk9oWz39l/view?usp=sharing" class="download-btn">
+                            <i class="fas fa-download"></i> Скачать для Linux
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fab fa-windows"></i>
+                    </div>
+                    <div class="app-content">
+                        <h2>Gitrex Message Windows</h2>
+                        <p>Мессенджер для Windows с интуитивным интерфейсом, быстрым обменом сообщениями и эмодзи</p>
+                        <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
+                        <a href="https://drive.google.com/file/d/1EaW8n8dH3xkk1zzviVmy7sGYgANAn9df/view?usp=drive_link" class="download-btn">
+                            <i class="fas fa-download"></i> Скачать для Windows
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title"><i class="fas fa-gamepad"></i> Игры и развлечения</h2>
+            <p class="section-subtitle">Увлекательные игры для отдыха и развития</p>
+            
+            <div class="apps-grid">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-map"></i>
+                    </div>
+                    <div class="app-content">
+                        <h2>Конструктор карт</h2>
+                        <p>Создавайте и редактируйте карты в браузере. Игра с локальным сохранением, не требует установки.</p>
+                        <span class="platform-tag"><i class="fas fa-globe"></i> Кроссплатформенный</span>
+                        <a href="https://kotnot.github.io/MapGame/" class="download-btn" style="background: linear-gradient(to right, #9b59b6, #8e44ad);">
+                            <i class="fas fa-gamepad"></i> Открыть конструктор карт
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <div class="app-content">
+                        <h2>Симулятор властей РФ</h2>
+                        <p>Стратегическая игра, где вы управляете страной, принимаете важные решения и строите политику</p>
+                        <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
+                        <a href="https://drive.google.com/file/d/1UutjYeXB6EfqjinyDyxVUqprqKZkOA09/view?usp=sharing" class="download-btn">
+                            <i class="fas fa-download"></i> Скачать игру
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon" style="background: #f39c12;">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <div class="app-content">
+                        <h2>School Simulator</h2>
+                        <p>Симулятор школы с реалистичной системой уроков, оценок и взаимодействия с персонажами</p>
+                        <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
+                        <a href="SchoolSimulator_Setup.exe" class="download-btn">
+                            <i class="fas fa-download"></i> Скачать симулятор школы
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon" style="background: #e74c3c;">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="app-content">
+                        <h2>Monster Fire</h2>
+                        <p>Захватывающий шутер, где вы сражаетесь с монстрами в огненном мире. Игра доступна онлайн в браузере.</p>
+                        <span class="platform-tag"><i class="fas fa-globe"></i> Кроссплатформенный</span>
+                        <a href="https://kotnot.github.io/MonsterFire/" class="download-btn" style="background: linear-gradient(to right, #e74c3c, #c0392b);">
+                            <i class="fas fa-gamepad"></i> Играть онлайн
+                        </a>
+                        <a href="https://github.com/kotnot/MonsterFire" class="download-btn" style="margin-top: 10px; background: linear-gradient(to right, #333, #555);">
+                            <i class="fab fa-github"></i> Исходный код
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="os-section">
+                <h2><i class="fas fa-laptop-code"></i> Операционная система GitrexOS</h2>
+                <p class="section-subtitle" style="margin-bottom: 20px;">Собственная операционная система для различных задач</p>
+                <div class="os-cards">
+                    <div class="app-card">
+                        <div class="app-icon" style="background: #8e44ad;">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="app-content">
+                            <h2>GitrexOS</h2>
+                            <p>Операционная система с поддержкой приложений, файлового менеджера, текстового редактора и GPF Studio для разработки</p>
+                            <span class="platform-tag"><i class="fas fa-microchip"></i> x86 архитектура</span>
+                            <a href="gitrexos.img" class="download-btn">
+                                <i class="fas fa-download"></i> Скачать образ
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h2><i class="fas fa-envelope"></i> Свяжитесь с нами</h2>
+                <p>Есть вопросы или предложения по нашим программам? Мы всегда на связи!</p>
+                
+                <a href="mailto:kotnotdemilxian@gmail.com" class="email-link">
+                    <i class="fas fa-paper-plane"></i> kotnotdemilxian@gmail.com
+                </a>
+                
+                <p style="margin-top: 20px; margin-bottom: 15px;">Или напишите нам в соцсетях:</p>
+                <div class="social-links" style="margin-top: 15px; justify-content: center;">
+                    <a href="https://github.com/kotnot" class="social-btn github" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://www.youtube.com/@kotnot01" class="social-btn youtube" target="_blank">
+                        <i class="fab fa-youtube"></i> YouTube
+                    </a>
+                    <a href="https://t.me/KotnotLive" class="social-btn telegram" target="_blank">
+                        <i class="fab fa-telegram"></i> Telegram
                     </a>
                 </div>
             </div>
         </div>
 
-        <div class="documentation-section">
-            <h2><i class="fas fa-book"></i> Документация</h2>
-            <p class="section-subtitle">Подробная документация по нашим продуктам и языку программирования</p>
-            
-            <div class="doc-links">
-                <a href="#browser-zet-doc" class="doc-link">
-                    <i class="fas fa-globe"></i>
-                    <div>
-                        <strong>Browser Zet</strong>
-                        <small>Документация браузера</small>
-                    </div>
-                </a>
-                
-                <a href="#gitrex-script-ide-doc" class="doc-link">
-                    <i class="fas fa-code"></i>
-                    <div>
-                        <strong>Gitrex Script IDE</strong>
-                        <small>Документация IDE</small>
-                    </div>
-                </a>
-                
-                <a href="#gitrex-message-doc" class="doc-link">
-                    <i class="fas fa-comments"></i>
-                    <div>
-                        <strong>Gitrex Message</strong>
-                        <small>Документация мессенджера</small>
-                    </div>
-                </a>
-                
-                <a href="#gitrexos-doc" class="doc-link">
-                    <i class="fas fa-laptop-code"></i>
-                    <div>
-                        <strong>GitrexOS</strong>
-                        <small>Документация ОС</small>
-                    </div>
-                </a>
-                
-                <a href="#kotnot-c-doc" class="doc-link">
-                    <i class="fas fa-cogs"></i>
-                    <div>
-                        <strong>Kotnot-C</strong>
-                        <small>Документация языка</small>
-                    </div>
-                </a>
-            </div>
-        </div>
+        <!-- Страница документации -->
+        <div id="doc-page" class="page">
+            <div class="doc-page">
+                <div class="doc-header">
+                    <h1><i class="fas fa-book"></i> Документация Perfectic Inc</h1>
+                    <p>Полная документация по всем продуктам и языку программирования Kotnot-C</p>
+                </div>
 
-        <div class="doc-content">
-            <h2 class="section-title"><i class="fas fa-file-alt"></i> Полная документация</h2>
-            
-            <div class="doc-section" id="browser-zet-doc">
-                <h3><i class="fas fa-globe"></i> Browser Zet - Документация</h3>
-                <p><strong>Версия:</strong> 1.0</p>
-                <p><strong>Платформа:</strong> Windows</p>
-                
-                <h4>Установка:</h4>
-                <ol>
-                    <li>Скачайте установочный файл</li>
-                    <li>Запустите установщик</li>
-                    <li>Следуйте инструкциям мастера установки</li>
-                    <li>После установки ярлык появится на рабочем столе</li>
-                </ol>
-                
-                <a href="#" class="back-to-top">
-                    <i class="fas fa-arrow-up"></i> Наверх
-                </a>
-            </div>
-            
-            <div class="doc-section" id="gitrex-script-ide-doc">
-                <h3><i class="fas fa-code"></i> Gitrex Script IDE - Документация</h3>
-                <p><strong>Версия:</strong> 1.0</p>
-                <p><strong>Платформа:</strong> Windows</p>
-                
-                <h4>Пример кода:</h4>
-                <pre style="background: #f8f9fa; padding: 15px; border-radius: 8px; overflow: auto;">
-function main() {
-    print("Hello, Gitrex!");
-    let x = 10;
-    for(let i = 0; i < x; i++) {
-        print("Iteration: " + i);
-    }
-}</pre>
-                
-                <a href="#" class="back-to-top">
-                    <i class="fas fa-arrow-up"></i> Наверх
-                </a>
-            </div>
-            
-            <div class="doc-section" id="gitrex-message-doc">
-                <h3><i class="fas fa-comments"></i> Gitrex Message - Документация</h3>
-                <p><strong>Версия:</strong> 1.4</p>
-                <p><strong>Платформы:</strong> Windows, Linux</p>
-                
-                <h4>Настройка:</h4>
-                <ol>
-                    <li>Создайте аккаунт или войдите</li>
-                    <li>Настройте профиль (аватар, статус)</li>
-                    <li>Добавьте контакты по username</li>
-                    <li>Начните общение в личных или групповых чатах</li>
-                </ol>
-                
-                <h4>Безопасность:</h4>
-                <p>Все сообщения шифруются с помощью алгоритма AES-256. Ключи шифрования хранятся только на устройствах пользователей.</p>
-                
-                <a href="#" class="back-to-top">
-                    <i class="fas fa-arrow-up"></i> Наверх
-                </a>
-            </div>
-            
-            <div class="doc-section" id="gitrexos-doc">
-                <h3><i class="fas fa-laptop-code"></i> GitrexOS - Документация</h3>
-                <p><strong>Версии:</strong> Original (полная), Lite (облегченная)</p>
-                <p><strong>Архитектура:</strong> x86_64</p>
-                
-                <h4>Установка:</h4>
-                <ol>
-                    <li>Скачайте образ (IMG или BIN)</li>
-                    <li>Запишите на USB-накопитель с помощью Rufus или аналогичной программы</li>
-                    <li>Загрузитесь с USB</li>
-                    <li>Следуйте инструкциям установщика</li>
-                </ol>
-                
-                <a href="#" class="back-to-top">
-                    <i class="fas fa-arrow-up"></i> Наверх
-                </a>
-            </div>
-            
-            <div class="doc-section" id="kotnot-c-doc">
-                <h3><i class="fas fa-cogs"></i> Kotnot-C - Документация</h3>
-                <p><strong>Версия языка:</strong> 1.1</p>
-                <p><strong>Компилятор:</strong> kc (Kotnot-C Compiler)</p>
-                
-                <h4>Пример программы:</h4>
-                <pre style="background: #f8f9fa; padding: 15px; border-radius: 8px; overflow: auto;">
-// Пример программы на Kotnot-C
+                <div class="doc-search">
+                    <input type="text" id="docSearch" placeholder="Поиск по документации..." onkeyup="searchDocs()">
+                </div>
+
+                <div class="doc-grid">
+                    <div class="doc-sidebar">
+                        <h3><i class="fas fa-list"></i> Содержание</h3>
+                        <ul class="doc-menu">
+                            <li><a href="#kotnot-c-doc" onclick="showDocSection('kotnot-c-doc')"><i class="fas fa-cogs"></i> Kotnot-C</a></li>
+                            <li><a href="#browser-zet-doc" onclick="showDocSection('browser-zet-doc')"><i class="fas fa-globe"></i> Browser Zet</a></li>
+                            <li><a href="#gitrex-message-doc" onclick="showDocSection('gitrex-message-doc')"><i class="fas fa-comments"></i> Gitrex Message</a></li>
+                            <li><a href="#gitrexos-doc" onclick="showDocSection('gitrexos-doc')"><i class="fas fa-laptop-code"></i> GitrexOS</a></li>
+                            <li><a href="#asmos-doc" onclick="showDocSection('asmos-doc')"><i class="fas fa-microchip"></i> ASMOS Constructor</a></li>
+                            <li><a href="#zetoshop-doc" onclick="showDocSection('zetoshop-doc')"><i class="fas fa-paint-brush"></i> ZetoShop</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="doc-content" id="docContent">
+                        <!-- Kotnot-C Documentation (объединенная) -->
+                        <div id="kotnot-c-doc" class="doc-section">
+                            <h2><i class="fas fa-cogs"></i> Kotnot-C - Полная документация</h2>
+                            
+                            <div class="doc-note">
+                                <strong>Версия:</strong> 8.0 Ultimate | <strong>Компилятор:</strong> kc (Kotnot-C Compiler) | <strong>Лицензия:</strong> MIT
+                            </div>
+
+                            <h3>Введение</h3>
+                            <p>Kotnot-C - современный язык программирования с C-подобным синтаксисом, созданный для системного и прикладного программирования. Язык сочетает производительность C с безопасностью памяти и современными возможностями.</p>
+
+                            <h3>Установка компилятора</h3>
+                            <ol>
+                                <li>Скачайте установщик Kotnot-C с <a href="https://kotnot.github.io/Kotnot-C/">официального сайта</a></li>
+                                <li>Запустите установку и следуйте инструкциям мастера</li>
+                                <li>Добавьте путь к компилятору в переменные среды PATH</li>
+                                <li>Проверьте установку командой: <code>kc --version</code></li>
+                            </ol>
+
+                            <h3>Синтаксис</h3>
+                            <p>Kotnot-C использует знакомый C-подобный синтаксис с улучшениями:</p>
+
+                            <pre><code>// Пример программы на Kotnot-C
 import std.io;
+import std.math;
 
 func main() -> int {
     println("Hello, Kotnot-C!");
@@ -620,236 +944,536 @@ func main() -> int {
     let sum = x + y;
     println("Sum: {}", sum);
     
+    // Работа с массивами
+    let arr = [1, 2, 3, 4, 5];
+    for i in arr {
+        println("Element: {}", i);
+    }
+    
+    // Использование стандартной библиотеки
+    let result = math.pow(2, 10);
+    println("2^10 = {}", result);
+    
     return 0;
-}</pre>
-                
-                <a href="#" class="back-to-top">
-                    <i class="fas fa-arrow-up"></i> Наверх
-                </a>
-            </div>
-        </div>
+}</code></pre>
 
-        <h2 class="section-title"><i class="fas fa-desktop"></i> Программы для работы</h2>
-        <p class="section-subtitle">Профессиональные инструменты для разработки и работы</p>
-        
-        <div class="apps-grid">
-            <div class="app-card">
-                <div class="app-icon">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="app-content">
-                    <h2>Gitrex Script IDE Windows</h2>
-                    <p>Интегрированная среда разработки для языка программирования Gitrex Script с подсветкой синтаксиса и отладчиком</p>
-                    <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
-                    <a href="https://drive.google.com/file/d/152JWFp_VxJoYsul5VWyEzc_hkuyN0TDJ/view?usp=sharing" class="download-btn">
-                        <i class="fas fa-download"></i> Скачать IDE
-                    </a>
-                </div>
-            </div>
-            
-            <div class="app-card">
-                <div class="app-icon">
-                    <i class="fas fa-globe"></i>
-                </div>
-                <div class="app-content">
-                    <h2>Browser Zet</h2>
-                    <p>Браузер на Python для быстрого и безопасного серфинга в интернете с поддержкой закладок и истории</p>
-                    <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
-                    <a href="https://drive.google.com/file/d/1iPPWinwG23-p_uoXeFlPoG-t6PQxJ769/view?usp=drive_link" class="download-btn">
-                        <i class="fas fa-download"></i> Скачать браузер
-                    </a>
-                </div>
-            </div>
-            
-            <div class="app-card">
-                <div class="app-icon" style="background: #8e44ad;">
-                    <i class="fas fa-microchip"></i>
-                </div>
-                <div class="app-content">
-                    <h2>ASMOS Constructor</h2>
-                    <p>Мощный конструктор для создания операционных систем на ассемблере.</p>
-                    <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
-                    <a href="ASMOSConstructor_Setup.exe" class="download-btn">
-                        <i class="fas fa-download"></i> Скачать установщик
-                    </a>
-                </div>
-            </div>
-            
-            <div class="app-card">
-                <div class="app-icon" style="background: #31a8ff;">
-                    <i class="fas fa-paint-brush"></i>
-                </div>
-                <div class="app-content">
-                    <h2>ZetoShop</h2>
-                    <p>Графический редактор для обработки изображений с различными инструментами, фильтрами и эффектами</p>
-                    <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
-                    <a href="https://drive.google.com/file/d/1bN6nZqRIEPNZc85v3MSaIXtVOApoi9Ur/view?usp=sharing" class="download-btn">
-                        <i class="fas fa-download"></i> Скачать ZetoShop
-                    </a>
-                </div>
-            </div>
-        </div>
+                            <h3>Основные возможности</h3>
+                            <ul>
+                                <li><strong>Безопасность памяти:</strong> автоматическое управление памятью</li>
+                                <li><strong>Современная типизация:</strong> поддержка дженериков и алгебраических типов данных</li>
+                                <li><strong>Производительность:</strong> компиляция в нативный код</li>
+                                <li><strong>Стандартная библиотека:</strong> богатый набор модулей для работы с файлами, сетью, потоками</li>
+                                <li><strong>2D/3D графика:</strong> встроенная поддержка игр и визуализации</li>
+                                <li><strong>Блокчейн:</strong> создание криптовалют и NFT</li>
+                                <li><strong>Научные вычисления:</strong> работа с данными и статистика</li>
+                            </ul>
 
-        <h2 class="section-title"><i class="fas fa-comments"></i> Мессенджеры Gitrex Message</h2>
-        <p class="section-subtitle">Общайтесь безопасно с помощью наших мессенджеров на Firebase и Python</p>
-        
-        <div class="apps-grid">
-            <div class="app-card">
-                <div class="app-icon">
-                    <i class="fab fa-linux"></i>
-                </div>
-                <div class="app-content">
-                    <h2>Gitrex Message Linux</h2>
-                    <p>Мессенджер для Linux с поддержкой Firebase, облачными сообщениями, файлами и групповыми чатами</p>
-                    <span class="platform-tag"><i class="fab fa-linux"></i> Linux</span>
-                    <a href="https://drive.google.com/file/d/1h5vFt_vtsMWBcQRCc5qaLfkSk9oWz39l/view?usp=sharing" class="download-btn">
-                        <i class="fas fa-download"></i> Скачать для Linux
-                    </a>
-                </div>
-            </div>
-            
-            <div class="app-card">
-                <div class="app-icon">
-                    <i class="fab fa-windows"></i>
-                </div>
-                <div class="app-content">
-                    <h2>Gitrex Message Windows</h2>
-                    <p>Мессенджер для Windows с интуитивным интерфейсом, быстрым обменом сообщениями и эмодзи</p>
-                    <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
-                    <a href="https://drive.google.com/file/d/1EaW8n8dH3xkk1zzviVmy7sGYgANAn9df/view?usp=drive_link" class="download-btn">
-                        <i class="fas fa-download"></i> Скачать для Windows
-                    </a>
-                </div>
-            </div>
-        </div>
+                            <h3>Команды компилятора</h3>
+                            <pre><code>kc new project_name     # Создать новый проект
+kc build                # Скомпилировать проект
+kc run                  # Запустить проект
+kc test                 # Запустить тесты
+kc doc                  # Сгенерировать документацию
+kc add package_name     # Добавить зависимость</code></pre>
 
-        <h2 class="section-title"><i class="fas fa-gamepad"></i> Игры и развлечения</h2>
-        <p class="section-subtitle">Увлекательные игры для отдыха и развития</p>
-        
-        <div class="apps-grid">
-            <div class="app-card">
-                <div class="app-icon">
-                    <i class="fas fa-map"></i>
-                </div>
-                <div class="app-content">
-                    <h2>Конструктор карт</h2>
-                    <p>Создавайте и редактируйте карты в браузере. Игра с локальным сохранением, не требует установки.</p>
-                    <span class="platform-tag"><i class="fas fa-globe"></i> Кроссплатформенный</span>
-                    <a href="https://kotnot.github.io/MapGame/" class="download-btn" style="background: linear-gradient(to right, #9b59b6, #8e44ad);">
-                        <i class="fas fa-gamepad"></i> Открыть конструктор карт
-                    </a>
-                </div>
-            </div>
-            
-            <div class="app-card">
-                <div class="app-icon">
-                    <i class="fas fa-flag"></i>
-                </div>
-                <div class="app-content">
-                    <h2>Симулятор властей РФ</h2>
-                    <p>Стратегическая игра, где вы управляете страной, принимаете важные решения и строите политику</p>
-                    <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
-                    <a href="https://drive.google.com/file/d/1UutjYeXB6EfqjinyDyxVUqprqKZkOA09/view?usp=sharing" class="download-btn">
-                        <i class="fas fa-download"></i> Скачать игру
-                    </a>
-                </div>
-            </div>
-            
-            <div class="app-card">
-                <div class="app-icon" style="background: #f39c12;">
-                    <i class="fas fa-school"></i>
-                </div>
-                <div class="app-content">
-                    <h2>School Simulator</h2>
-                    <p>Симулятор школы с реалистичной системой уроков, оценок и взаимодействия с персонажами</p>
-                    <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
-                    <a href="SchoolSimulator_Setup.exe" class="download-btn">
-                        <i class="fas fa-download"></i> Скачать симулятор школы
-                    </a>
-                </div>
-            </div>
-            
-            <div class="app-card">
-                <div class="app-icon" style="background: #e74c3c;">
-                    <i class="fas fa-fire"></i>
-                </div>
-                <div class="app-content">
-                    <h2>Monster Fire</h2>
-                    <p>Захватывающий шутер, где вы сражаетесь с монстрами в огненном мире. Игра доступна онлайн в браузере.</p>
-                    <span class="platform-tag"><i class="fas fa-globe"></i> Кроссплатформенный</span>
-                    <a href="https://kotnot.github.io/MonsterFire/" class="download-btn" style="background: linear-gradient(to right, #e74c3c, #c0392b);">
-                        <i class="fas fa-gamepad"></i> Играть онлайн
-                    </a>
-                    <a href="https://github.com/kotnot/MonsterFire" class="download-btn" style="margin-top: 10px; background: linear-gradient(to right, #333, #555);">
-                        <i class="fab fa-github"></i> Исходный код
-                    </a>
-                </div>
-            </div>
-        </div>
+                            <h3>Расширенные возможности Kotnot-C 8.0</h3>
+                            
+                            <h4>2D/3D Игры</h4>
+                            <pre><code>// Создание 2D игры
+game = create_game_2d(800, 600, "Моя игра")
+game_2d_add_rect(game, 400, 300, 50, 50, "red")
+game_2d_run(game)
 
-        <div class="os-section">
-            <h2><i class="fas fa-laptop-code"></i> Операционные системы GitrexOS</h2>
-            <p class="section-subtitle" style="margin-bottom: 20px;">Собственные операционные системы для различных задач</p>
-            <div class="os-cards">
-                <div class="app-card">
-                    <div class="app-icon" style="background: #8e44ad;">
-                        <i class="fas fa-star"></i>
+// Создание 3D игры
+game3d = create_game_3d(1024, 768, "Моя 3D игра")
+game_3d_add_cube(game3d, 0, 0, 0, 2, "blue")
+game_3d_run(game3d)</code></pre>
+
+                            <h4>Веб-браузер</h4>
+                            <pre><code>browser = create_browser("https://kotnot.github.io")
+browser_show(browser)
+browser_navigate(browser, "https://google.com")</code></pre>
+
+                            <h4>Мессенджер</h4>
+                            <pre><code>msg = create_messenger("User")
+messenger_show(msg)
+messenger_send(msg, "Привет! Как дела?")</code></pre>
+
+                            <h4>Конвертация кода</h4>
+                            <pre><code>code = 'print("Hello World")'
+python = convert_to_py(code)      # В Python
+swift = convert_to_swift(code)    # В Swift
+java = convert_to_java(code)      # В Java
+kotlin = convert_to_kotlin(code)  # В Kotlin</code></pre>
+
+                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+                                <i class="fas fa-arrow-up"></i> Наверх
+                            </a>
+                        </div>
+
+                        <!-- Browser Zet Documentation -->
+                        <div id="browser-zet-doc" class="doc-section" style="display: none;">
+                            <h2><i class="fas fa-globe"></i> Browser Zet - Документация</h2>
+                            
+                            <div class="doc-note">
+                                <strong>Версия:</strong> 1.0 | <strong>Платформа:</strong> Windows | <strong>Размер:</strong> 25 MB
+                            </div>
+
+                            <h3>Описание</h3>
+                            <p>Browser Zet - легкий и быстрый браузер, ориентированный на безопасность и удобство использования.</p>
+
+                            <h3>Основные функции</h3>
+                            <ul>
+                                <li><strong>Вкладки:</strong> удобная работа с несколькими страницами</li>
+                                <li><strong>Режим инкогнито:</strong> просмотр без сохранения истории и cookies</li>
+                                <li><strong>Стартовая страница:</strong> быстрый доступ к популярным сайтам и поиску</li>
+                                <li><strong>История просмотров:</strong> сохранение и управление историей</li>
+                                <li><strong>Настройки:</strong> выбор домашней страницы и поисковой системы</li>
+                            </ul>
+
+                            <h3>Горячие клавиши</h3>
+                            <table class="hotkey-table">
+                                <tr>
+                                    <th>Комбинация</th>
+                                    <th>Действие</th>
+                                </tr>
+                                <tr>
+                                    <td>Ctrl + T</td>
+                                    <td>Новая вкладка</td>
+                                </tr>
+                                <tr>
+                                    <td>Ctrl + Shift + N</td>
+                                    <td>Новое окно в режиме инкогнито</td>
+                                </tr>
+                                <tr>
+                                    <td>Ctrl + W</td>
+                                    <td>Закрыть вкладку</td>
+                                </tr>
+                                <tr>
+                                    <td>Ctrl + Tab</td>
+                                    <td>Следующая вкладка</td>
+                                </tr>
+                                <tr>
+                                    <td>Ctrl + Shift + Tab</td>
+                                    <td>Предыдущая вкладка</td>
+                                </tr>
+                                <tr>
+                                    <td>Ctrl + H</td>
+                                    <td>История</td>
+                                </tr>
+                                <tr>
+                                    <td>Ctrl + Q</td>
+                                    <td>Выход</td>
+                                </tr>
+                            </table>
+
+                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+                                <i class="fas fa-arrow-up"></i> Наверх
+                            </a>
+                        </div>
+
+                        <!-- Gitrex Message Documentation -->
+                        <div id="gitrex-message-doc" class="doc-section" style="display: none;">
+                            <h2><i class="fas fa-comments"></i> Gitrex Message - Документация</h2>
+                            
+                            <div class="doc-note">
+                                <strong>Версия:</strong> 1.4 | <strong>Платформы:</strong> Windows, Linux | <strong>Размер:</strong> 35 MB
+                            </div>
+
+                            <h3>Описание</h3>
+                            <p>Gitrex Message - безопасный мессенджер с облачным бэкендом. Поддерживает личные и групповые чаты, систему друзей и модерации.</p>
+
+                            <h3>Система аутентификации</h3>
+                            <ul>
+                                <li><strong>Регистрация/вход:</strong> по email с паролем</li>
+                                <li><strong>Восстановление пароля:</strong> отправка письма для сброса</li>
+                                <li><strong>Сессии:</strong> автоматический выход через 1 час неактивности</li>
+                            </ul>
+
+                            <h3>Социальные функции</h3>
+                            <ul>
+                                <li><strong>Друзья:</strong> отправка/принятие запросов, удаление из друзей</li>
+                                <li><strong>Профили:</strong> аватары, описания, дата регистрации</li>
+                                <li><strong>Блокировки:</strong> возможность блокировать нежелательных пользователей</li>
+                                <li><strong>Поиск:</strong> поиск пользователей по никнейму</li>
+                            </ul>
+
+                            <h3>Групповые чаты</h3>
+                            <ul>
+                                <li><strong>Создание групп:</strong> любой пользователь может создать группу</li>
+                                <li><strong>Администрирование:</strong> назначение администраторов, исключение участников</li>
+                                <li><strong>Баны:</strong> возможность банить пользователей в группе</li>
+                                <li><strong>Управление сообщениями:</strong> администраторы могут удалять любые сообщения</li>
+                            </ul>
+
+                            <h3>Функции чата</h3>
+                            <ul>
+                                <li><strong>Реальные сообщения:</strong> мгновенное обновление</li>
+                                <li><strong>Ответы на сообщения:</strong> цитирование</li>
+                                <li><strong>Редактирование:</strong> возможность исправить отправленное сообщение</li>
+                                <li><strong>Удаление:</strong> удаление своих сообщений или чужих (для админов)</li>
+                                <li><strong>Счетчик символов:</strong> ограничение 512 символов на сообщение</li>
+                            </ul>
+
+                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+                                <i class="fas fa-arrow-up"></i> Наверх
+                            </a>
+                        </div>
+
+                        <!-- GitrexOS Documentation (обновленная с горячими клавишами) -->
+                        <div id="gitrexos-doc" class="doc-section" style="display: none;">
+                            <h2><i class="fas fa-laptop-code"></i> GitrexOS - Документация</h2>
+                            
+                            <div class="doc-note">
+                                <strong>Версия:</strong> 1.0 | <strong>Архитектура:</strong> x86 | <strong>Лицензия:</strong> GPLv3
+                            </div>
+
+                            <h3>Описание</h3>
+                            <p>GitrexOS - собственная операционная система, разработанная для обучения и экспериментов. Включает в себя несколько встроенных приложений и удобное управление с клавиатуры.</p>
+
+                            <h3>Системные требования</h3>
+                            <table class="hotkey-table">
+                                <tr>
+                                    <th>Компонент</th>
+                                    <th>Минимальные требования</th>
+                                </tr>
+                                <tr>
+                                    <td>Процессор</td>
+                                    <td>1 GHz (x86)</td>
+                                </tr>
+                                <tr>
+                                    <td>ОЗУ</td>
+                                    <td>512 MB</td>
+                                </tr>
+                                <tr>
+                                    <td>Место на диске</td>
+                                    <td>500 MB</td>
+                                </tr>
+                            </table>
+
+                            <h3>Установка</h3>
+                            <ol>
+                                <li>Скачайте образ системы (gitrexos.img)</li>
+                                <li>Запишите образ на USB-накопитель (минимум 1 GB):</li>
+                                <ul>
+                                    <li><strong>Windows:</strong> используйте Rufus или BalenaEtcher</li>
+                                    <li><strong>Linux:</strong> <code>sudo dd if=gitrexos.img of=/dev/sdX bs=4M status=progress</code></li>
+                                </ul>
+                                <li>Перезагрузите компьютер и выберите загрузку с USB в BIOS</li>
+                                <li>Система загрузится автоматически (установка на диск не требуется)</li>
+                            </ol>
+
+                            <h3>Горячие клавиши GitrexOS</h3>
+                            
+                            <div class="hotkey-section">Основное управление</div>
+                            <table class="hotkey-table">
+                                <tr>
+                                    <th>Клавиши</th>
+                                    <th>Действие</th>
+                                </tr>
+                                <tr>
+                                    <td>Arrow keys / WASD</td>
+                                    <td>Перемещение курсора</td>
+                                </tr>
+                                <tr>
+                                    <td>Space / Enter</td>
+                                    <td>Выбор / Клик</td>
+                                </tr>
+                                <tr>
+                                    <td>ESC</td>
+                                    <td>Системное меню или выход из приложения</td>
+                                </tr>
+                                <tr>
+                                    <td>F1</td>
+                                    <td>Справка</td>
+                                </tr>
+                                <tr>
+                                    <td>F2</td>
+                                    <td>Тест звука</td>
+                                </tr>
+                                <tr>
+                                    <td>1-5</td>
+                                    <td>Запуск приложений (1-Текст.редактор, 2-GPF Studio, 3-Файл.менеджер, 4-Терминал, 5-Калькулятор)</td>
+                                </tr>
+                            </table>
+
+                            <div class="hotkey-section">Текстовый редактор</div>
+                            <table class="hotkey-table">
+                                <tr>
+                                    <th>Клавиши</th>
+                                    <th>Действие</th>
+                                </tr>
+                                <tr>
+                                    <td>F1</td>
+                                    <td>Сохранить (Save)</td>
+                                </tr>
+                                <tr>
+                                    <td>F2</td>
+                                    <td>Загрузить (Load)</td>
+                                </tr>
+                                <tr>
+                                    <td>F3</td>
+                                    <td>Очистить (Clear)</td>
+                                </tr>
+                                <tr>
+                                    <td>F4</td>
+                                    <td>Сохранить как (Save As)</td>
+                                </tr>
+                            </table>
+
+                            <div class="hotkey-section">GPF Studio</div>
+                            <table class="hotkey-table">
+                                <tr>
+                                    <th>Клавиши</th>
+                                    <th>Действие</th>
+                                </tr>
+                                <tr>
+                                    <td>F1</td>
+                                    <td>Открыть (Open)</td>
+                                </tr>
+                                <tr>
+                                    <td>F2</td>
+                                    <td>Новый (New)</td>
+                                </tr>
+                                <tr>
+                                    <td>F5</td>
+                                    <td>Компилировать (Compile)</td>
+                                </tr>
+                                <tr>
+                                    <td>F6</td>
+                                    <td>Запустить (Run)</td>
+                                </tr>
+                                <tr>
+                                    <td>F7</td>
+                                    <td>Сохранить (Save)</td>
+                                </tr>
+                            </table>
+
+                            <div class="hotkey-section">Терминал</div>
+                            <p>Доступные команды:</p>
+                            <table class="hotkey-table">
+                                <tr>
+                                    <th>Команда</th>
+                                    <th>Описание</th>
+                                </tr>
+                                <tr>
+                                    <td>help</td>
+                                    <td>Показать справку</td>
+                                </tr>
+                                <tr>
+                                    <td>dir</td>
+                                    <td>Список файлов</td>
+                                </tr>
+                                <tr>
+                                    <td>ver</td>
+                                    <td>Версия системы</td>
+                                </tr>
+                                <tr>
+                                    <td>clear</td>
+                                    <td>Очистить экран</td>
+                                </tr>
+                                <tr>
+                                    <td>sound</td>
+                                    <td>Тест звука</td>
+                                </tr>
+                                <tr>
+                                    <td>time</td>
+                                    <td>Текущее время</td>
+                                </tr>
+                                <tr>
+                                    <td>files</td>
+                                    <td>Список файлов</td>
+                                </tr>
+                            </table>
+
+                            <div class="hotkey-section">Файловый менеджер</div>
+                            <table class="hotkey-table">
+                                <tr>
+                                    <th>Клавиши</th>
+                                    <th>Действие</th>
+                                </tr>
+                                <tr>
+                                    <td>Space</td>
+                                    <td>Выделить (Select)</td>
+                                </tr>
+                                <tr>
+                                    <td>D</td>
+                                    <td>Удалить (Delete)</td>
+                                </tr>
+                                <tr>
+                                    <td>R</td>
+                                    <td>Переименовать (Rename)</td>
+                                </tr>
+                                <tr>
+                                    <td>C</td>
+                                    <td>Копировать (Copy)</td>
+                                </tr>
+                                <tr>
+                                    <td>M</td>
+                                    <td>Переместить (Move)</td>
+                                </tr>
+                                <tr>
+                                    <td>S</td>
+                                    <td>Сохранить файловую систему (SaveFS)</td>
+                                </tr>
+                            </table>
+
+                            <div class="doc-note">
+                                <strong>Примечание:</strong> GitrexOS работает в режиме реальной защиты и поддерживает многозадачность. Для выхода в главное меню из любого приложения нажмите ESC.
+                            </div>
+
+                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+                                <i class="fas fa-arrow-up"></i> Наверх
+                            </a>
+                        </div>
+
+                        <!-- ASMOS Constructor Documentation -->
+                        <div id="asmos-doc" class="doc-section" style="display: none;">
+                            <h2><i class="fas fa-microchip"></i> ASMOS Constructor - Документация</h2>
+                            
+                            <div class="doc-note">
+                                <strong>Версия:</strong> 1.0 | <strong>Платформа:</strong> Windows | <strong>Размер:</strong> 15 MB
+                            </div>
+
+                            <h3>Описание</h3>
+                            <p>ASMOS Constructor - мощный инструмент для создания и экспериментов с операционными системами на ассемблере. Позволяет создавать загрузочные образы и эмулировать их работу.</p>
+
+                            <h3>Интерфейс</h3>
+                            <ul>
+                                <li><strong>Редактор кода:</strong> написание ассемблерного кода с подсветкой синтаксиса</li>
+                                <li><strong>Компилятор:</strong> сборка кода в бинарный образ</li>
+                                <li><strong>Эмулятор:</strong> тестирование созданной ОС в виртуальной среде</li>
+                                <li><strong>Отладчик:</strong> пошаговая отладка и анализ работы</li>
+                            </ul>
+
+                            <h3>Создание первой ОС</h3>
+                            <pre><code>; Пример простой загрузочной ОС
+[BITS 16]
+[ORG 0x7C00]
+
+start:
+    mov ax, cs
+    mov ds, ax
+    mov es, ax
+    
+    ; Очистка экрана
+    mov ax, 0x0003
+    int 0x10
+    
+    ; Вывод сообщения
+    mov si, msg
+    call print_string
+    
+    ; Бесконечный цикл
+    jmp $
+
+print_string:
+    lodsb
+    or al, al
+    jz .done
+    mov ah, 0x0E
+    int 0x10
+    jmp print_string
+.done:
+    ret
+
+msg db 'Hello from ASMOS!', 0
+
+times 510-($-$$) db 0
+dw 0xAA55</code></pre>
+
+                            <h3>Компиляция и запуск</h3>
+                            <ol>
+                                <li>Напишите код в редакторе</li>
+                                <li>Нажмите "Build" для компиляции</li>
+                                <li>Используйте "Run" для запуска в эмуляторе</li>
+                                <li>Для сохранения на реальный носитель нажмите "Write to USB"</li>
+                            </ol>
+
+                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+                                <i class="fas fa-arrow-up"></i> Наверх
+                            </a>
+                        </div>
+
+                        <!-- ZetoShop Documentation -->
+                        <div id="zetoshop-doc" class="doc-section" style="display: none;">
+                            <h2><i class="fas fa-paint-brush"></i> ZetoShop - Документация</h2>
+                            
+                            <div class="doc-note">
+                                <strong>Версия:</strong> 1.0 | <strong>Платформа:</strong> Windows | <strong>Размер:</strong> 45 MB
+                            </div>
+
+                            <h3>Описание</h3>
+                            <p>ZetoShop - графический редактор для обработки изображений с широким набором инструментов, фильтров и эффектов.</p>
+
+                            <h3>Инструменты</h3>
+                            <ul>
+                                <li><strong>Кисть:</strong> рисование с настраиваемым размером и прозрачностью</li>
+                                <li><strong>Ластик:</strong> удаление частей изображения</li>
+                                <li><strong>Выделение:</strong> прямоугольная, эллиптическая и лассо области</li>
+                                <li><strong>Текст:</strong> добавление текста с настройкой шрифта и цвета</li>
+                                <li><strong>Заливка:</strong> заливка областей цветом или градиентом</li>
+                                <li><strong>Пипетка:</strong> выбор цвета из изображения</li>
+                            </ul>
+
+                            <h3>Фильтры и эффекты</h3>
+                            <ul>
+                                <li>Размытие (Гауссово, радиальное, по движению)</li>
+                                <li>Резкость</li>
+                                <li>Черно-белое изображение</li>
+                                <li>Сепия</li>
+                                <li>Негатив</li>
+                                <li>Коррекция яркости/контраста</li>
+                                <li>Цветовой баланс</li>
+                                <li>Пикселизация</li>
+                            </ul>
+
+                            <h3>Форматы файлов</h3>
+                            <table class="hotkey-table">
+                                <tr>
+                                    <th>Формат</th>
+                                    <th>Импорт</th>
+                                    <th>Экспорт</th>
+                                </tr>
+                                <tr>
+                                    <td>PNG</td>
+                                    <td>✓</td>
+                                    <td>✓</td>
+                                </tr>
+                                <tr>
+                                    <td>JPG/JPEG</td>
+                                    <td>✓</td>
+                                    <td>✓</td>
+                                </tr>
+                                <tr>
+                                    <td>BMP</td>
+                                    <td>✓</td>
+                                    <td>✓</td>
+                                </tr>
+                                <tr>
+                                    <td>GIF</td>
+                                    <td>✓</td>
+                                    <td>-</td>
+                                </tr>
+                            </table>
+
+                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+                                <i class="fas fa-arrow-up"></i> Наверх
+                            </a>
+                        </div>
                     </div>
-                    <div class="app-content">
-                        <h2>GitrexOS Original</h2>
-                        <p>Полнофункциональная версия ОС со всем необходимым для работы, развлечений и разработки</p>
-                        <span class="platform-tag"><i class="fas fa-microchip"></i> Полная версия</span>
-                        <a href="gitrex.img" class="download-btn">
-                            <i class="fas fa-download"></i> Скачать (IMG файл)
-                        </a>
-                    </div>
-                </div>
-
-                <div class="app-card">
-                    <div class="app-icon" style="background: #2ecc71;">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <div class="app-content">
-                        <h2>GitrexOS Lite</h2>
-                        <p>Облегченная версия для старых компьютеров или минималистичного использования</p>
-                        <span class="platform-tag"><i class="fas fa-tachometer-alt"></i> Облегченная</span>
-                        <a href="gitrex.bin" class="download-btn">
-                            <i class="fas fa-download"></i> Скачать (BIN файл)
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="contact-section">
-            <h2><i class="fas fa-envelope"></i> Свяжитесь с нами</h2>
-            <p>Есть вопросы или предложения по нашим программам? Мы всегда на связи!</p>
-            
-            <a href="mailto:kotnotdemilxian@gmail.com" class="email-link">
-                <i class="fas fa-paper-plane"></i> kotnotdemilxian@gmail.com
-            </a>
-            
-            <p style="margin-top: 20px; margin-bottom: 15px;">Или напишите нам в соцсетях:</p>
-            <div class="social-links" style="margin-top: 15px; justify-content: center;">
-                <a href="https://github.com/kotnot" class="social-btn github" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                <a href="https://www.youtube.com/@Kotnot01" class="social-btn youtube" target="_blank">
-                    <i class="fab fa-youtube"></i> YouTube
-                </a>
-                <a href="https://t.me/KotnotLive" class="social-btn telegram" target="_blank">
-                    <i class="fab fa-telegram"></i> Telegram
-                </a>
-            </div>
-        </div>
-
+        <!-- Footer -->
         <footer>
-            <p>2024 Perfectic Inc</p>
+            <p>2025 Perfectic Inc</p>
             <div style="margin-top: 15px;">
                 <a href="https://github.com/kotnot" style="color: #333; text-decoration: none; margin: 0 10px;">
                     <i class="fab fa-github"></i> GitHub
                 </a>
-                <a href="https://www.youtube.com/@Kotno01" style="color: #ff0000; text-decoration: none; margin: 0 10px;">
+                <a href="https://www.youtube.com/@kotnot01" style="color: #ff0000; text-decoration: none; margin: 0 10px;">
                     <i class="fab fa-youtube"></i> YouTube
                 </a>
                 <a href="https://t.me/KotnotLive" style="color: #0088cc; text-decoration: none; margin: 0 10px;">
@@ -860,69 +1484,146 @@ func main() -> int {
     </div>
 
     <script>
-        // Анимация при наведении на карточки
-        document.querySelectorAll('.app-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px)';
+        // Переключение между страницами
+        function showPage(pageName) {
+            const mainPage = document.getElementById('main-page');
+            const docPage = document.getElementById('doc-page');
+            
+            if (pageName === 'main') {
+                mainPage.classList.add('active');
+                docPage.classList.remove('active');
+                document.title = 'Perfectic Inc - Главная';
+                history.pushState({page: 'main'}, 'Главная', '#main');
+            } else {
+                mainPage.classList.remove('active');
+                docPage.classList.add('active');
+                document.title = 'Perfectic Inc - Документация';
+                history.pushState({page: 'doc'}, 'Документация', '#doc');
+                
+                // Показываем первый раздел документации по умолчанию
+                if (!window.location.hash || window.location.hash === '#doc') {
+                    showDocSection('kotnot-c-doc');
+                }
+            }
+        }
+
+        // Показать раздел документации
+        function showDocSection(sectionId) {
+            // Скрываем все разделы
+            document.querySelectorAll('.doc-section').forEach(section => {
+                section.style.display = 'none';
             });
             
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
+            // Показываем выбранный раздел
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.style.display = 'block';
+            }
+            
+            // Обновляем активный пункт меню
+            document.querySelectorAll('.doc-menu a').forEach(link => {
+                link.classList.remove('active');
             });
-        });
-        
-        // Плавная прокрутка для якорей
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') {
-                    // Прокрутка наверх для ссылок с #
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                    return;
-                }
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 20,
-                        behavior: 'smooth'
-                    });
+            
+            const activeLink = document.querySelector(`.doc-menu a[href="#${sectionId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+            
+            // Обновляем хеш в URL
+            window.location.hash = sectionId;
+            
+            // Прокручиваем к началу документации
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Поиск по документации
+        function searchDocs() {
+            const searchTerm = document.getElementById('docSearch').value.toLowerCase();
+            
+            if (searchTerm.length < 2) return;
+            
+            // Простой поиск по всем разделам
+            const sections = document.querySelectorAll('.doc-section');
+            let found = false;
+            
+            sections.forEach(section => {
+                const text = section.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    section.style.display = 'block';
+                    found = true;
+                } else if (section.style.display !== 'none') {
+                    section.style.display = 'none';
                 }
             });
-        });
-        
-        // Открытие внешних ссылок в новом окне
-        document.querySelectorAll('a[href^="http"]').forEach(link => {
-            if(!link.getAttribute('target')) {
-                link.setAttribute('target', '_blank');
-                link.setAttribute('rel', 'noopener noreferrer');
+            
+            if (!found && searchTerm.length >= 2) {
+                alert('Ничего не найдено. Попробуйте другие ключевые слова.');
+            }
+        }
+
+        // Обработка навигации по истории браузера
+        window.addEventListener('popstate', function(event) {
+            if (window.location.hash === '#main' || window.location.hash === '') {
+                showPage('main');
+            } else if (window.location.hash === '#doc') {
+                showPage('doc');
+            } else if (window.location.hash) {
+                // Если хеш указывает на раздел документации
+                showPage('doc');
+                const sectionId = window.location.hash.substring(1);
+                showDocSection(sectionId);
             }
         });
-        
-        // Динамическое обновление года в футере
+
+        // Инициализация при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
+            // Проверяем хеш в URL
+            if (window.location.hash === '#doc') {
+                showPage('doc');
+            } else if (window.location.hash && window.location.hash !== '#main') {
+                showPage('doc');
+                const sectionId = window.location.hash.substring(1);
+                // Ждем загрузки DOM и показываем раздел
+                setTimeout(() => showDocSection(sectionId), 100);
+            } else {
+                showPage('main');
+            }
+            
+            // Обновляем год в футере
             const yearElement = document.querySelector('footer p:first-child');
-            if(yearElement) {
+            if (yearElement) {
                 const currentYear = new Date().getFullYear();
                 yearElement.textContent = currentYear + ' Perfectic Inc';
             }
             
-            // Проверка якоря в URL для автоматической прокрутки
-            if(window.location.hash) {
-                const targetElement = document.querySelector(window.location.hash);
-                if(targetElement) {
-                    setTimeout(() => {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 20,
-                            behavior: 'smooth'
-                        });
-                    }, 100);
+            // Добавляем обработку якорей в документации
+            document.querySelectorAll('.doc-menu a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('href').substring(1);
+                    showDocSection(sectionId);
+                });
+            });
+            
+            // Анимация при наведении на карточки
+            document.querySelectorAll('.app-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Открытие внешних ссылок в новом окне
+            document.querySelectorAll('a[href^="http"]').forEach(link => {
+                if(!link.getAttribute('target') && !link.classList.contains('nav-btn')) {
+                    link.setAttribute('target', '_blank');
+                    link.setAttribute('rel', 'noopener noreferrer');
                 }
-            }
+            });
         });
     </script>
 </body>
