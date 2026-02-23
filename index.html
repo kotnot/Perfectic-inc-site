@@ -686,6 +686,21 @@
             <p class="section-subtitle">Профессиональные инструменты для разработки и работы</p>
             
             <div class="apps-grid">
+                <!-- НОВАЯ КАРТОЧКА: KotnotNET -->
+                <div class="app-card">
+                    <div class="app-icon" style="background: #9b59b6;">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="app-content">
+                        <h2>KotnotNET</h2>
+                        <p>Платформа, объединяющая все необходимые инструменты и библиотеки от Perfectic Inc для разработки и запуска приложений на Kotnot-C.</p>
+                        <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
+                        <a href="https://drive.google.com/file/d/1ww2VCr7C-ofQGlzbS4_n24TDnHS-qUv4/view?usp=sharing" class="download-btn" style="background: linear-gradient(to right, #9b59b6, #8e44ad);">
+                            <i class="fas fa-download"></i> Скачать KotnotNET
+                        </a>
+                    </div>
+                </div>
+                
                 <div class="app-card">
                     <div class="app-icon" style="background: #3498db;">
                         <i class="fas fa-cogs"></i>
@@ -900,7 +915,6 @@
                         <h3><i class="fas fa-list"></i> Содержание</h3>
                         <ul class="doc-menu">
                             <li><a href="#kotnot-c-doc" onclick="showDocSection('kotnot-c-doc')"><i class="fas fa-cogs"></i> Kotnot-C</a></li>
-                            <li><a href="#kotnot-net-doc" onclick="showDocSection('kotnot-net-doc')"><i class="fas fa-link"></i> KotnotNET</a></li>
                             <li><a href="#browser-zet-doc" onclick="showDocSection('browser-zet-doc')"><i class="fas fa-globe"></i> Browser Zet</a></li>
                             <li><a href="#gitrex-message-doc" onclick="showDocSection('gitrex-message-doc')"><i class="fas fa-comments"></i> Gitrex Message</a></li>
                             <li><a href="#gitrexos-doc" onclick="showDocSection('gitrexos-doc')"><i class="fas fa-laptop-code"></i> GitrexOS</a></li>
@@ -1006,51 +1020,6 @@ python = convert_to_py(code)      # В Python
 swift = convert_to_swift(code)    # В Swift
 java = convert_to_java(code)      # В Java
 kotlin = convert_to_kotlin(code)  # В Kotlin</code></pre>
-
-                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
-                                <i class="fas fa-arrow-up"></i> Наверх
-                            </a>
-                        </div>
-                        
-                        <!-- KotnotNET Documentation (НОВЫЙ РАЗДЕЛ) -->
-                        <div id="kotnot-net-doc" class="doc-section" style="display: none;">
-                            <h2><i class="fas fa-link"></i> KotnotNET - Платформа для Windows</h2>
-                            
-                            <div class="doc-note">
-                                <strong>Версия:</strong> 1.0 | <strong>Платформа:</strong> Windows | <strong>Тип:</strong> Установщик
-                            </div>
-
-                            <h3>Описание</h3>
-                            <p>KotnotNET - это платформа, объединяющая все необходимые инструменты и библиотеки от Perfectic Inc для разработки и запуска приложений на Kotnot-C.</p>
-
-                            <h3>Установка</h3>
-                            <ol>
-                                <li>Скачайте установщик KotnotNET для Windows по ссылке ниже.</li>
-                                <li>Запустите скачанный файл <code>KotnotNET_Setup.exe</code>.</li>
-                                <li>Следуйте инструкциям мастера установки (выберите путь установки, создание ярлыков).</li>
-                                <li>После завершения установки, необходимые компоненты будут добавлены в системную переменную PATH.</li>
-                                <li>Перезагрузите компьютер (рекомендуется) для завершения настройки.</li>
-                            </ol>
-
-                            <h3>Состав платформы</h3>
-                            <p>KotnotNET включает в себя:</p>
-                            <ul>
-                                <li><strong>Компилятор Kotnot-C</strong> - для компиляции программ из исходного кода.</li>
-                                <li><strong>Стандартная библиотека</strong> - набор функций для работы с файлами, сетью и графикой.</li>
-                                <li><strong>Инструменты разработчика</strong> - отладчик и профилировщик.</li>
-                                <li><strong>Среда выполнения (Runtime)</strong> - необходима для запуска скомпилированных приложений.</li>
-                            </ul>
-
-                            <h3>Скачать установщик</h3>
-                            <p>Нажмите на кнопку ниже, чтобы скачать последнюю версию установщика KotnotNET для Windows:</p>
-                            
-                            <a href="https://drive.google.com/file/d/1ww2VCr7C-ofQGlzbS4_n24TDnHS-qUv4/view?usp=sharing" class="download-btn" style="background: linear-gradient(to right, #4285f4, #34a853); display: inline-block; width: auto; padding: 15px 30px;">
-                                <i class="fas fa-download"></i> Скачать KotnotNET (Windows)
-                            </a>
-                            
-                            <div class="doc-warning" style="margin-top: 25px;">
-                                <strong>Важно:</strong> Перед установкой убедитесь, что ваш компьютер соответствует минимальным системным требованиям: Windows 7 или выше, 500 МБ свободного места на диске.
-                            </div>
 
                             <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
                                 <i class="fas fa-arrow-up"></i> Наверх
@@ -1199,11 +1168,11 @@ kotlin = convert_to_kotlin(code)  # В Kotlin</code></pre>
 
                             <h3>Установка</h3>
                             <ol>
-                                <li>Скачайте образ системы (gitrex.img)</li>
+                                <li>Скачайте образ системы (gitrexos.img)</li>
                                 <li>Запишите образ на USB-накопитель (минимум 1 GB):</li>
                                 <ul>
                                     <li><strong>Windows:</strong> используйте Rufus или BalenaEtcher</li>
-                                    <li><strong>Linux:</strong> <code>sudo dd if=gitrex.img of=/dev/sdX bs=4M status=progress</code></li>
+                                    <li><strong>Linux:</strong> <code>sudo dd if=gitrexos.img of=/dev/sdX bs=4M status=progress</code></li>
                                 </ul>
                                 <li>Перезагрузите компьютер и выберите загрузку с USB в BIOS</li>
                                 <li>Система загрузится автоматически (установка на диск не требуется)</li>
