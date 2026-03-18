@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfectic Inc - Главная</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- PyScript для запуска Python в браузере -->
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    
     <style>
         * {
             margin: 0;
@@ -916,6 +921,52 @@
             margin: 20px 0;
         }
 
+        .server-info {
+            background: #e8f4fc;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-left: 4px solid #4285f4;
+        }
+
+        .server-info p {
+            margin: 5px 0;
+            color: #2c3e50;
+        }
+
+        .server-info i {
+            color: #4285f4;
+            margin-right: 8px;
+        }
+
+        #pyscript-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 10000;
+            display: none;
+        }
+
+        #pyscript-status.active {
+            display: block;
+        }
+
+        #pyscript-status.error {
+            background: #dc3545;
+        }
+
+        #pyscript-status.loading {
+            background: #ffc107;
+            color: #333;
+        }
+
         @media (max-width: 768px) {
             .apps-grid {
                 grid-template-columns: 1fr;
@@ -979,6 +1030,10 @@
     </style>
 </head>
 <body>
+    <div id="pyscript-status" class="active loading">
+        <i class="fas fa-spinner fa-spin"></i> Запуск Python в браузере...
+    </div>
+
     <div class="container">
         <nav class="main-nav">
             <button class="nav-btn main" onclick="showPage('main')">
@@ -987,10 +1042,14 @@
             <button class="nav-btn doc" onclick="showPage('doc')">
                 <i class="fas fa-book"></i> Документация
             </button>
-            <button class="nav-btn stats" onclick="showPage('stats'); loadStatsFromServer();">
+            <button class="nav-btn stats" onclick="showPage('stats'); waitForPyScriptAndLoadStats();">
                 <i class="fas fa-chart-bar"></i> Статистика
             </button>
         </nav>
+
+        <div class="server-info" id="serverInfo">
+            <p><i class="fas fa-database"></i> <span id="serverAddress">Python работает в браузере (PyScript)</span></p>
+        </div>
 
         <div class="recaptcha-overlay" id="recaptchaOverlay">
             <div class="recaptcha-modal">
@@ -1017,13 +1076,13 @@
                 <p class="tagline">Профессиональные решения для работы, общения и развлечений от разработчика Kotnot</p>
                 
                 <div class="social-links">
-                    <a href="https://github.com/kotnot" class="social-btn github" target="_blank">
+                    <a href="https://github.com/kotnot" class="social-btn github" target="_blank" onclick="return registerDownload('social-github', 'Переход в GitHub')">
                         <i class="fab fa-github"></i> GitHub: kotnot
                     </a>
-                    <a href="https://www.youtube.com/@kotnot01" class="social-btn youtube" target="_blank">
+                    <a href="https://www.youtube.com/@kotnot01" class="social-btn youtube" target="_blank" onclick="return registerDownload('social-youtube', 'Переход в YouTube')">
                         <i class="fab fa-youtube"></i> YouTube: @kotnot01
                     </a>
-                    <a href="https://t.me/KotnotLive" class="social-btn telegram" target="_blank">
+                    <a href="https://t.me/KotnotLive" class="social-btn telegram" target="_blank" onclick="return registerDownload('social-telegram', 'Переход в Telegram')">
                         <i class="fab fa-telegram"></i> Telegram: @KotnotLive
                     </a>
                 </div>
@@ -1506,7 +1565,7 @@ func main() -> int {
                 <div class="stats-header">
                     <h1><i class="fas fa-chart-bar"></i> Статистика скачиваний</h1>
                     <p>Общая статистика по всем приложениям Perfectic Inc 
-                        <button class="refresh-btn" onclick="loadStatsFromServer()" title="Обновить данные">
+                        <button class="refresh-btn" onclick="waitForPyScriptAndLoadStats()" title="Обновить данные">
                             <i class="fas fa-sync-alt"></i>
                         </button>
                     </p>
@@ -1564,24 +1623,278 @@ func main() -> int {
         </footer>
     </div>
 
-    <script>
-        // Автоматическое определение URL сервера
-        const API_URL = window.location.origin; // Использует текущий хост и порт
+    <!-- PyScript секция с сервером -->
+    <py-script>
+import sqlite3
+import json
+from datetime import datetime
+import asyncio
+from js import document, window, console
+from pyodide.ffi import create_proxy, to_js
+import sys
+import traceback
 
+# Конфигурация
+DB_PATH = 'downloads.db'
+
+# Глобальное хранилище статистики
+stats_data = {
+    'total_downloads': 0,
+    'apps': [],
+    'daily': [],
+    'last_updated': datetime.now().isoformat()
+}
+
+# Список приложений
+APPS = [
+    ('kotnotAI', 'KotnotAI', 'ai', 'web'),
+    ('kotnotC', 'Kotnot-C', 'language', 'web'),
+    ('kotnotC-compiler', 'Kotnot-C Компилятор', 'development', 'windows'),
+    ('browser-zet', 'Browser Zet', 'browser', 'windows'),
+    ('asmos', 'ASMOS Constructor', 'development', 'windows'),
+    ('zetoshop', 'ZetoShop', 'graphics', 'windows'),
+    ('gitrex-linux', 'Gitrex Message Linux', 'messenger', 'linux'),
+    ('gitrex-windows', 'Gitrex Message Windows', 'messenger', 'windows'),
+    ('map-game', 'Конструктор карт', 'game', 'web'),
+    ('monsterfire-tanks', 'MonsterFire Tanks', 'game', 'windows'),
+    ('kumys-simulator', 'Симулятор кумыса', 'game', 'windows'),
+    ('russia-simulator', 'Симулятор властей РФ', 'game', 'windows'),
+    ('school-simulator', 'School Simulator', 'game', 'windows'),
+    ('hate-simulator', 'Симулятор ненависти', 'game', 'windows'),
+    ('monsterfire-online', 'Monster Fire', 'game', 'web'),
+    ('monsterfire-github', 'Monster Fire GitHub', 'game', 'web'),
+    ('gitrexos', 'GitrexOS', 'os', 'x86'),
+    ('social-github', 'GitHub', 'social', 'web'),
+    ('social-youtube', 'YouTube', 'social', 'web'),
+    ('social-telegram', 'Telegram', 'social', 'web')
+]
+
+def init_db():
+    """Инициализация базы данных"""
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        
+        # Таблица приложений
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS apps (
+                id TEXT PRIMARY KEY,
+                name TEXT NOT NULL,
+                category TEXT NOT NULL,
+                platform TEXT NOT NULL
+            )
+        ''')
+        
+        # Таблица скачиваний
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS downloads (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                app_id TEXT NOT NULL,
+                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (app_id) REFERENCES apps (id)
+            )
+        ''')
+        
+        # Добавляем приложения
+        for app_id, name, category, platform in APPS:
+            cursor.execute('INSERT OR IGNORE INTO apps (id, name, category, platform) VALUES (?, ?, ?, ?)',
+                          (app_id, name, category, platform))
+        
+        conn.commit()
+        conn.close()
+        console.log("✅ База данных инициализирована")
+        return True
+    except Exception as e:
+        console.error(f"❌ Ошибка инициализации БД: {str(e)}")
+        return False
+
+def get_detailed_stats():
+    """Получение детальной статистики"""
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        
+        # Статистика по приложениям
+        cursor.execute('''
+            SELECT 
+                a.id,
+                a.name,
+                a.category,
+                a.platform,
+                COUNT(d.id) as total,
+                COUNT(CASE WHEN d.timestamp >= DATE('now', '-7 days') THEN 1 END) as weekly,
+                COUNT(CASE WHEN d.timestamp >= DATE('now', '-30 days') THEN 1 END) as monthly
+            FROM apps a
+            LEFT JOIN downloads d ON a.id = d.app_id
+            GROUP BY a.id
+            ORDER BY total DESC
+        ''')
+        
+        apps_stats = []
+        total_all = 0
+        
+        for row in cursor.fetchall():
+            total_all += row[4] if row[4] else 0
+            apps_stats.append({
+                'id': row[0],
+                'name': row[1],
+                'category': row[2],
+                'platform': row[3],
+                'total': row[4] if row[4] else 0,
+                'weekly': row[5] if row[5] else 0,
+                'monthly': row[6] if row[6] else 0
+            })
+        
+        # Ежедневная статистика
+        cursor.execute('''
+            SELECT DATE(timestamp) as date, COUNT(*) as count
+            FROM downloads
+            WHERE timestamp >= DATE('now', '-30 days')
+            GROUP BY DATE(timestamp)
+            ORDER BY date
+        ''')
+        
+        daily_stats = []
+        for row in cursor.fetchall():
+            daily_stats.append({
+                'date': row[0],
+                'count': row[1]
+            })
+        
+        conn.close()
+        
+        return {
+            'total_downloads': total_all,
+            'apps': apps_stats,
+            'daily': daily_stats,
+            'last_updated': datetime.now().isoformat()
+        }
+    except Exception as e:
+        console.error(f"❌ Ошибка получения статистики: {str(e)}")
+        return None
+
+def register_download_in_db(app_id):
+    """Регистрация скачивания в БД"""
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        
+        # Проверяем существование приложения
+        cursor.execute('SELECT id FROM apps WHERE id = ?', (app_id,))
+        if not cursor.fetchone():
+            conn.close()
+            return None
+        
+        # Регистрируем скачивание
+        cursor.execute('''
+            INSERT INTO downloads (app_id)
+            VALUES (?)
+        ''', (app_id,))
+        
+        conn.commit()
+        
+        # Получаем общее количество
+        cursor.execute('SELECT COUNT(*) FROM downloads WHERE app_id = ?', (app_id,))
+        total = cursor.fetchone()[0]
+        
+        conn.close()
+        return total
+    except Exception as e:
+        console.error(f"❌ Ошибка регистрации: {str(e)}")
+        return None
+
+# JavaScript интерфейс
+async def register_download(app_id, action):
+    """Регистрация скачивания из JavaScript"""
+    try:
+        console.log(f"Регистрация скачивания: {app_id}")
+        total = register_download_in_db(app_id)
+        if total is not None:
+            # Обновляем счетчик на странице
+            element = document.getElementById(f"{app_id}-downloads")
+            if element:
+                element.textContent = total.toLocaleString()
+            
+            # Обновляем статистику
+            update_stats()
+            
+            return to_js({'success': True, 'total': total})
+        else:
+            return to_js({'success': False, 'error': 'App not found'})
+    except Exception as e:
+        console.error(f"Error: {str(e)}")
+        return to_js({'success': False, 'error': str(e)})
+
+async def get_stats():
+    """Получение статистики для JavaScript"""
+    try:
+        console.log("Получение статистики")
+        stats = get_detailed_stats()
+        if stats:
+            return to_js(stats)
+        else:
+            return to_js({'error': 'Failed to get stats'})
+    except Exception as e:
+        console.error(f"Error: {str(e)}")
+        return to_js({'error': str(e)})
+
+def update_stats():
+    """Обновление глобальной статистики"""
+    global stats_data
+    stats = get_detailed_stats()
+    if stats:
+        stats_data = stats
+
+# Инициализация
+console.log("🚀 Запуск Python в браузере...")
+init_db()
+update_stats()
+
+# Делаем функции доступными из JavaScript
+window.registerDownload = create_proxy(register_download)
+window.getStats = create_proxy(get_stats)
+
+# Сигнализируем о готовности
+document.getElementById("pyscript-status").classList.remove("loading")
+document.getElementById("pyscript-status").classList.add("active")
+document.getElementById("pyscript-status").innerHTML = '<i class="fas fa-check"></i> Python готов!'
+
+console.log("✅ Python готов к работе!")
+    </py-script>
+
+    <script>
+        // Флаг готовности PyScript
+        let pyscriptReady = false;
+        let statsLoadAttempts = 0;
+        const MAX_ATTEMPTS = 10;
+
+        // Функция регистрации скачивания
         async function registerDownload(appId, action) {
+            // Проверяем, готова ли PyScript функция
+            if (typeof window.registerDownload !== 'function') {
+                console.log('PyScript еще не готов, используем локальное хранилище');
+                // Используем localStorage как запасной вариант
+                return handleDownloadLocal(appId);
+            }
+            
             try {
-                const response = await fetch(`${API_URL}/api/download/${appId}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: action })
-                });
-                if (response.ok) {
-                    const data = await response.json();
-                    updateCounter(appId, data.total);
+                const result = await window.registerDownload(appId, action);
+                if (result && result.success) {
+                    updateCounter(appId, result.total);
                 }
             } catch (error) {
                 console.error('Ошибка регистрации скачивания:', error);
+                handleDownloadLocal(appId);
             }
+            return true;
+        }
+
+        // Запасной вариант с localStorage
+        function handleDownloadLocal(appId) {
+            let stats = JSON.parse(localStorage.getItem('downloadStats') || '{}');
+            stats[appId] = (stats[appId] || 0) + 1;
+            localStorage.setItem('downloadStats', JSON.stringify(stats));
+            updateCounter(appId, stats[appId]);
             return true;
         }
 
@@ -1590,7 +1903,8 @@ func main() -> int {
             if (element) element.textContent = count.toLocaleString();
         }
 
-        async function loadStatsFromServer() {
+        // Функция ожидания готовности PyScript
+        async function waitForPyScriptAndLoadStats() {
             const loadingEl = document.getElementById('stats-loading');
             const errorEl = document.getElementById('stats-error');
             const contentEl = document.getElementById('stats-content');
@@ -1599,11 +1913,59 @@ func main() -> int {
             errorEl.style.display = 'none';
             contentEl.style.display = 'none';
             
+            // Ждем готовности PyScript
+            let attempts = 0;
+            while (typeof window.getStats !== 'function' && attempts < MAX_ATTEMPTS) {
+                console.log(`Ожидание PyScript... попытка ${attempts + 1}/${MAX_ATTEMPTS}`);
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                attempts++;
+            }
+            
+            if (typeof window.getStats === 'function') {
+                await loadStatsFromServer();
+            } else {
+                // Используем localStorage если PyScript не готов
+                console.log('PyScript не готов, используем localStorage');
+                loadStatsFromLocal();
+                loadingEl.style.display = 'none';
+                contentEl.style.display = 'block';
+            }
+        }
+
+        // Загрузка статистики из localStorage
+        function loadStatsFromLocal() {
+            const stats = JSON.parse(localStorage.getItem('downloadStats') || '{}');
+            
+            // Создаем тестовые данные
+            const apps = [
+                {id: 'kotnotAI', name: 'KotnotAI', category: 'ai', total: stats['kotnotAI'] || 0},
+                {id: 'kotnotC', name: 'Kotnot-C', category: 'language', total: stats['kotnotC'] || 0},
+                {id: 'browser-zet', name: 'Browser Zet', category: 'browser', total: stats['browser-zet'] || 0},
+                {id: 'asmos', name: 'ASMOS Constructor', category: 'development', total: stats['asmos'] || 0},
+                {id: 'gitrex-windows', name: 'Gitrex Windows', category: 'messenger', total: stats['gitrex-windows'] || 0}
+            ];
+            
+            const total = Object.values(stats).reduce((a, b) => a + b, 0);
+            
+            document.getElementById('totalDownloads').textContent = total.toLocaleString();
+            document.getElementById('lastUpdated').textContent = `Обновлено: ${new Date().toLocaleString()}`;
+            
+            createStatsCards(apps);
+            createCategoryStats(apps);
+            createTopAppsList(apps);
+        }
+
+        async function loadStatsFromServer() {
+            const loadingEl = document.getElementById('stats-loading');
+            const errorEl = document.getElementById('stats-error');
+            const contentEl = document.getElementById('stats-content');
+            
             try {
-                const response = await fetch(`${API_URL}/api/stats`);
-                if (!response.ok) throw new Error('Ошибка загрузки');
+                const stats = await window.getStats();
                 
-                const stats = await response.json();
+                if (stats.error) {
+                    throw new Error(stats.error);
+                }
                 
                 document.getElementById('totalDownloads').textContent = stats.total_downloads.toLocaleString();
                 document.getElementById('lastUpdated').textContent = `Обновлено: ${new Date(stats.last_updated).toLocaleString()}`;
@@ -1642,10 +2004,10 @@ func main() -> int {
                     <div class="stat-icon"><i class="fas ${icon}"></i></div>
                     <div class="stat-info">
                         <h3>${app.name}</h3>
-                        <div class="stat-number">${app.total.toLocaleString()}</div>
+                        <div class="stat-number">${(app.total || 0).toLocaleString()}</div>
                         <div class="stat-period">
-                            <span>7д: ${app.weekly}</span>
-                            <span>30д: ${app.monthly}</span>
+                            <span>7д: ${app.weekly || 0}</span>
+                            <span>30д: ${app.monthly || 0}</span>
                         </div>
                     </div>
                 `;
@@ -1658,14 +2020,14 @@ func main() -> int {
             const categoryNames = {
                 'ai': 'ИИ', 'language': 'Языки', 'development': 'Разработка',
                 'browser': 'Браузеры', 'messenger': 'Мессенджеры',
-                'game': 'Игры', 'os': 'ОС', 'graphics': 'Графика'
+                'game': 'Игры', 'os': 'ОС', 'graphics': 'Графика', 'social': 'Соцсети'
             };
             
             apps.forEach(app => {
                 if (!categories[app.category]) {
                     categories[app.category] = { total: 0, count: 0 };
                 }
-                categories[app.category].total += app.total;
+                categories[app.category].total += app.total || 0;
                 categories[app.category].count++;
             });
             
@@ -1719,7 +2081,7 @@ func main() -> int {
                         <h4>${app.name}</h4>
                         <p>${app.category}</p>
                     </div>
-                    <div class="popular-downloads">${app.total.toLocaleString()} загрузок</div>
+                    <div class="popular-downloads">${(app.total || 0).toLocaleString()} загрузок</div>
                 `;
                 list.appendChild(li);
             });
@@ -1773,11 +2135,15 @@ func main() -> int {
             document.getElementById('recaptchaOverlay').classList.remove('active');
         }
 
+        // Сохраняем функции в глобальную область
+        window.waitForPyScriptAndLoadStats = waitForPyScriptAndLoadStats;
+
+        // Обработка изменения hash в URL
         window.addEventListener('popstate', function() {
             const hash = window.location.hash.substring(1);
             if (['main', 'doc', 'stats'].includes(hash)) {
                 showPage(hash);
-                if (hash === 'stats') loadStatsFromServer();
+                if (hash === 'stats') waitForPyScriptAndLoadStats();
             } else if (hash) {
                 showPage('doc');
                 showDocSection(hash);
@@ -1786,13 +2152,12 @@ func main() -> int {
             }
         });
 
+        // Загрузка при старте
         document.addEventListener('DOMContentLoaded', function() {
-            loadStatsFromServer();
-            
             const hash = window.location.hash.substring(1);
             if (hash === 'stats') {
                 showPage('stats');
-                loadStatsFromServer();
+                setTimeout(waitForPyScriptAndLoadStats, 2000);
             } else if (hash === 'doc') {
                 showPage('doc');
             } else if (hash) {
@@ -1815,7 +2180,14 @@ func main() -> int {
                 setTimeout(showRecaptcha, 1000);
             }
             
-            setInterval(loadStatsFromServer, 60000);
+            // Периодическое обновление статистики
+            setInterval(() => {
+                if (document.getElementById('stats-page').classList.contains('active')) {
+                    if (typeof window.getStats === 'function') {
+                        loadStatsFromServer();
+                    }
+                }
+            }, 60000);
         });
     </script>
 </body>
