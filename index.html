@@ -1565,7 +1565,8 @@ func main() -> int {
     </div>
 
     <script>
-        const API_URL = '';
+        // Автоматическое определение URL сервера
+        const API_URL = window.location.origin; // Использует текущий хост и порт
 
         async function registerDownload(appId, action) {
             try {
