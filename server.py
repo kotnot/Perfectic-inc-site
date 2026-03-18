@@ -1,25 +1,22 @@
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, send_file
 from flask_cors import CORS
 import sqlite3
 import json
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
 import threading
 import time
 
-app = Flask(__name__, static_folder='static')
-CORS(app)  # Разрешаем кросс-доменные запросы
+app = Flask(__name__)
+CORS(app)
 
-# Путь к базе данных
 DB_PATH = 'downloads.db'
 JSON_PATH = 'stats.json'
 
-# Инициализация базы данных
 def init_db():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     
-    # Таблица для приложений
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS apps (
             id TEXT PRIMARY KEY,
@@ -29,7 +26,6 @@ def init_db():
         )
     ''')
     
-    # Таблица для статистики скачиваний
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS downloads (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -41,17 +37,6 @@ def init_db():
         )
     ''')
     
-    # Таблица для ежедневной статистики
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS daily_stats (
-            date TEXT PRIMARY KEY,
-            app_id TEXT NOT NULL,
-            count INTEGER DEFAULT 0,
-            FOREIGN KEY (app_id) REFERENCES apps (id)
-        )
-    ''')
-    
-    # Добавляем приложения, если их нет
     apps = [
         ('kotnotAI', 'KotnotAI', 'ai', 'web'),
         ('kotnotC', 'Kotnot-C', 'language', 'web'),
@@ -78,7 +63,6 @@ def init_db():
     conn.commit()
     conn.close()
 
-# Функция для обновления JSON-статистики
 def update_json_stats():
     while True:
         try:
@@ -87,14 +71,12 @@ def update_json_stats():
                 json.dump(stats, f, ensure_ascii=False, indent=2)
         except Exception as e:
             print(f"Ошибка обновления JSON: {e}")
-        time.sleep(60)  # Обновляем каждую минуту
+        time.sleep(60)
 
-# Получение детальной статистики
 def get_detailed_stats():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     
-    # Общая статистика по всем приложениям
     cursor.execute('''
         SELECT 
             a.id,
@@ -125,7 +107,6 @@ def get_detailed_stats():
             'monthly': row[6] if row[6] else 0
         })
     
-    # Получаем статистику за последние 30 дней
     cursor.execute('''
         SELECT DATE(timestamp) as date, COUNT(*) as count
         FROM downloads
@@ -150,13 +131,10 @@ def get_detailed_stats():
         'last_updated': datetime.now().isoformat()
     }
 
-# API для получения статистики
 @app.route('/api/stats', methods=['GET'])
 def get_stats():
-    stats = get_detailed_stats()
-    return jsonify(stats)
+    return jsonify(get_detailed_stats())
 
-# API для получения статистики конкретного приложения
 @app.route('/api/stats/<app_id>', methods=['GET'])
 def get_app_stats(app_id):
     conn = sqlite3.connect(DB_PATH)
@@ -193,22 +171,17 @@ def get_app_stats(app_id):
     else:
         return jsonify({'error': 'App not found'}), 404
 
-# API для регистрации скачивания
 @app.route('/api/download/<app_id>', methods=['POST'])
 def register_download(app_id):
     try:
-        data = request.get_json() or {}
-        
         conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
         
-        # Проверяем существование приложения
         cursor.execute('SELECT id FROM apps WHERE id = ?', (app_id,))
         if not cursor.fetchone():
             conn.close()
             return jsonify({'error': 'App not found'}), 404
         
-        # Регистрируем скачивание
         cursor.execute('''
             INSERT INTO downloads (app_id, ip_address, user_agent)
             VALUES (?, ?, ?)
@@ -217,22 +190,19 @@ def register_download(app_id):
         conn.commit()
         conn.close()
         
-        # Возвращаем обновленную статистику
         return get_app_stats(app_id)
         
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-# API для получения JSON-файла со статистикой
 @app.route('/stats.json', methods=['GET'])
 def get_stats_json():
     if os.path.exists(JSON_PATH):
-        return send_from_directory('.', JSON_PATH)
+        return send_file(JSON_PATH, mimetype='application/json')
     else:
         stats = get_detailed_stats()
         return jsonify(stats)
 
-# API для получения топа популярных приложений
 @app.route('/api/top', methods=['GET'])
 def get_top_apps():
     limit = request.args.get('limit', 10, type=int)
@@ -266,7 +236,6 @@ def get_top_apps():
     conn.close()
     return jsonify(top_apps)
 
-# API для получения статистики по категориям
 @app.route('/api/categories', methods=['GET'])
 def get_category_stats():
     conn = sqlite3.connect(DB_PATH)
@@ -294,23 +263,19 @@ def get_category_stats():
     conn.close()
     return jsonify(categories)
 
-# Главная страница (отдаем наш HTML)
 @app.route('/')
 def index():
-    return send_from_directory('static', 'index.html')
+    return send_file('index.html')
 
-# Для обслуживания статических файлов
 @app.route('/<path:path>')
 def static_files(path):
-    return send_from_directory('static', path)
+    # Для других файлов (если понадобятся)
+    if os.path.exists(path):
+        return send_file(path)
+    return "File not found", 404
 
 if __name__ == '__main__':
-    # Инициализируем базу данных
     init_db()
-    
-    # Запускаем фоновый поток для обновления JSON
     json_thread = threading.Thread(target=update_json_stats, daemon=True)
     json_thread.start()
-    
-    # Запускаем сервер
     app.run(host='0.0.0.0', port=5000, debug=True)
