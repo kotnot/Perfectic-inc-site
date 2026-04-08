@@ -6,10 +6,6 @@
     <title>Perfectic Inc - Главная</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- PyScript для запуска Python в браузере -->
-    <link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css">
-    <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
-    
     <style>
         * {
             margin: 0;
@@ -61,11 +57,6 @@
 
         .nav-btn.doc {
             background: #34a853;
-            color: white;
-        }
-
-        .nav-btn.stats {
-            background: #f39c12;
             color: white;
         }
 
@@ -229,23 +220,11 @@
             cursor: pointer;
             width: 100%;
             text-align: center;
-            margin-bottom: 10px;
         }
 
         .download-btn:hover {
             background: linear-gradient(to right, #3367d6, #2e8b57);
             transform: scale(1.03);
-        }
-
-        .download-count {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            font-size: 0.9rem;
-            color: #7f8c8d;
-            margin-top: 5px;
-            cursor: help;
         }
 
         .platform-tag {
@@ -542,244 +521,6 @@
             color: white;
         }
 
-        .stats-page {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .stats-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .stats-header h1 {
-            font-size: 2.5rem;
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-
-        .stats-header p {
-            color: #7f8c8d;
-            font-size: 1.1rem;
-        }
-
-        .total-downloads {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .total-downloads h2 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-
-        .total-number {
-            font-size: 4rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .last-updated {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin-top: 10px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: all 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .stat-icon {
-            width: 60px;
-            height: 60px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: #4285f4;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .stat-info {
-            flex: 1;
-        }
-
-        .stat-info h3 {
-            font-size: 1rem;
-            color: #7f8c8d;
-            margin-bottom: 5px;
-        }
-
-        .stat-info .stat-number {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-
-        .stat-period {
-            display: flex;
-            gap: 10px;
-            margin-top: 5px;
-            font-size: 0.8rem;
-        }
-
-        .stat-period span {
-            background: #e9ecef;
-            padding: 2px 8px;
-            border-radius: 12px;
-        }
-
-        .popular-apps {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 30px;
-        }
-
-        .popular-apps h3 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            font-size: 1.4rem;
-        }
-
-        .popular-list {
-            list-style: none;
-        }
-
-        .popular-list li {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            border-bottom: 1px solid #e9ecef;
-        }
-
-        .popular-list li:last-child {
-            border-bottom: none;
-        }
-
-        .popular-rank {
-            width: 30px;
-            height: 30px;
-            background: #4285f4;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .popular-info {
-            flex: 1;
-        }
-
-        .popular-info h4 {
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-
-        .popular-info p {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-        }
-
-        .popular-downloads {
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
-        .category-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .category-card {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .category-card h4 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-
-        .category-card .category-total {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #4285f4;
-        }
-
-        .daily-chart {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 30px 0;
-            overflow-x: auto;
-        }
-
-        .daily-bars {
-            display: flex;
-            align-items: flex-end;
-            gap: 10px;
-            min-height: 200px;
-            padding: 20px 0;
-        }
-
-        .daily-bar-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .daily-bar {
-            width: 100%;
-            background: linear-gradient(to top, #4285f4, #34a853);
-            border-radius: 5px 5px 0 0;
-            transition: height 0.3s;
-            min-height: 2px;
-        }
-
-        .daily-label {
-            font-size: 0.75rem;
-            color: #7f8c8d;
-            transform: rotate(-45deg);
-            white-space: nowrap;
-        }
-
         .recaptcha-overlay {
             position: fixed;
             top: 0;
@@ -874,85 +615,6 @@
             background: #dee2e6;
         }
 
-        .refresh-btn {
-            background: none;
-            border: none;
-            color: #4285f4;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-left: 10px;
-        }
-
-        .refresh-btn:hover {
-            color: #2c3e50;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 50px;
-            color: #7f8c8d;
-        }
-
-        .loading i {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .error-message {
-            background: #fee;
-            color: #c00;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .server-info {
-            background: #e8f4fc;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
-            text-align: center;
-            border-left: 4px solid #4285f4;
-        }
-
-        .server-info p {
-            margin: 5px 0;
-            color: #2c3e50;
-        }
-
-        .server-info i {
-            color: #4285f4;
-            margin-right: 8px;
-        }
-
-        #pyscript-status {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            z-index: 10000;
-            display: none;
-        }
-
-        #pyscript-status.active {
-            display: block;
-        }
-
-        #pyscript-status.error {
-            background: #dc3545;
-        }
-
-        #pyscript-status.loading {
-            background: #ffc107;
-            color: #333;
-        }
-
         @media (max-width: 768px) {
             .apps-grid {
                 grid-template-columns: 1fr;
@@ -996,30 +658,10 @@
             .doc-header h1 {
                 font-size: 2rem;
             }
-
-            .stats-page {
-                padding: 20px;
-            }
-
-            .stats-header h1 {
-                font-size: 2rem;
-            }
-
-            .total-number {
-                font-size: 3rem;
-            }
-
-            .recaptcha-modal {
-                padding: 30px 20px;
-            }
         }
     </style>
 </head>
 <body>
-    <div id="pyscript-status" class="active loading">
-        <i class="fas fa-spinner fa-spin"></i> Запуск Python в браузере...
-    </div>
-
     <div class="container">
         <nav class="main-nav">
             <button class="nav-btn main" onclick="showPage('main')">
@@ -1028,14 +670,7 @@
             <button class="nav-btn doc" onclick="showPage('doc')">
                 <i class="fas fa-book"></i> Документация
             </button>
-            <button class="nav-btn stats" onclick="showPage('stats'); loadStats();">
-                <i class="fas fa-chart-bar"></i> Статистика
-            </button>
         </nav>
-
-        <div class="server-info" id="serverInfo">
-            <p><i class="fas fa-database"></i> <span id="serverAddress">Python работает в браузере (PyScript) - статистика сохраняется в localStorage</span></p>
-        </div>
 
         <div class="recaptcha-overlay" id="recaptchaOverlay">
             <div class="recaptcha-modal">
@@ -1062,13 +697,13 @@
                 <p class="tagline">Профессиональные решения для работы, общения и развлечений от разработчика Kotnot</p>
                 
                 <div class="social-links">
-                    <a href="https://github.com/kotnot" class="social-btn github" target="_blank" onclick="return registerDownload('social-github', 'Переход в GitHub')">
+                    <a href="https://github.com/kotnot" class="social-btn github" target="_blank">
                         <i class="fab fa-github"></i> GitHub: kotnot
                     </a>
-                    <a href="https://www.youtube.com/@kotnot01" class="social-btn youtube" target="_blank" onclick="return registerDownload('social-youtube', 'Переход в YouTube')">
+                    <a href="https://www.youtube.com/@kotnot01" class="social-btn youtube" target="_blank">
                         <i class="fab fa-youtube"></i> YouTube: @kotnot01
                     </a>
-                    <a href="https://t.me/KotnotLive" class="social-btn telegram" target="_blank" onclick="return registerDownload('social-telegram', 'Переход в Telegram')">
+                    <a href="https://t.me/KotnotLive" class="social-btn telegram" target="_blank">
                         <i class="fab fa-telegram"></i> Telegram: @KotnotLive
                     </a>
                 </div>
@@ -1091,12 +726,9 @@
                         <h2>KotnotAI</h2>
                         <p>Мощная нейросеть для обработки текста, генерации изображений и решения сложных задач. Доступно онлайн!</p>
                         <span class="platform-tag"><i class="fas fa-globe"></i> Кроссплатформенный</span>
-                        <a href="https://kotnot.github.io/kotnotAI/" class="download-btn" style="background: linear-gradient(to right, #9b59b6, #8e44ad);" onclick="return registerDownload('kotnotAI', 'Переход на KotnotAI')">
+                        <a href="https://kotnot.github.io/kotnotAI/" class="download-btn" style="background: linear-gradient(to right, #9b59b6, #8e44ad);">
                             <i class="fas fa-external-link-alt"></i> Перейти к KotnotAI
                         </a>
-                        <div class="download-count" title="Загрузок / использований">
-                            <i class="fas fa-download"></i> <span id="kotnotAI-downloads">0</span> использований
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1113,12 +745,9 @@
                         <h2>Kotnot-C Компилятор</h2>
                         <p>Официальный компилятор для языка программирования Kotnot-C. Поддерживает все современные возможности языка.</p>
                         <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
-                        <a href="https://drive.google.com/file/d/1JA6Pr2IM_-ye6QBONRlFh4EIWS4xueVa/view?usp=sharing" class="download-btn" onclick="return registerDownload('kotnotC-compiler', 'Скачивание компилятора')">
+                        <a href="https://drive.google.com/file/d/1JA6Pr2IM_-ye6QBONRlFh4EIWS4xueVa/view?usp=sharing" class="download-btn">
                             <i class="fas fa-download"></i> Скачать компилятор
                         </a>
-                        <div class="download-count" title="Загрузок / использований">
-                            <i class="fas fa-download"></i> <span id="kotnotC-compiler-downloads">0</span> загрузок
-                        </div>
                     </div>
                 </div>
 
@@ -1130,12 +759,9 @@
                         <h2>KotnotNET</h2>
                         <p>Платформа для разработки и запуска приложений на Kotnot-C. Включает в себя компилятор, отладчик и среду выполнения.</p>
                         <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
-                        <a href="https://drive.google.com/file/d/1ww2VCr7C-ofQGlzbS4_n24TDnHS-qUv4/view?usp=drive_link" class="download-btn" style="background: linear-gradient(to right, #16a085, #1abc9c);" onclick="return registerDownload('kotnotnet', 'Скачивание KotnotNET')">
+                        <a href="https://drive.google.com/file/d/1ww2VCr7C-ofQGlzbS4_n24TDnHS-qUv4/view?usp=drive_link" class="download-btn" style="background: linear-gradient(to right, #16a085, #1abc9c);">
                             <i class="fas fa-download"></i> Скачать KotnotNET
                         </a>
-                        <div class="download-count" title="Загрузок / использований">
-                            <i class="fas fa-download"></i> <span id="kotnotnet-downloads">0</span> загрузок
-                        </div>
                     </div>
                 </div>
                 
@@ -1147,12 +773,9 @@
                         <h2>Browser Zet</h2>
                         <p>Браузер для быстрого и безопасного серфинга в интернете с поддержкой закладок и истории</p>
                         <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
-                        <a href="https://drive.google.com/file/d/1iPPWinwG23-p_uoXeFlPoG-t6PQxJ769/view?usp=drive_link" class="download-btn" onclick="return registerDownload('browser-zet', 'Скачивание браузера')">
+                        <a href="https://drive.google.com/file/d/1iPPWinwG23-p_uoXeFlPoG-t6PQxJ769/view?usp=drive_link" class="download-btn">
                             <i class="fas fa-download"></i> Скачать браузер
                         </a>
-                        <div class="download-count" title="Загрузок / использований">
-                            <i class="fas fa-download"></i> <span id="browser-zet-downloads">0</span> загрузок
-                        </div>
                     </div>
                 </div>
                 
@@ -1164,12 +787,9 @@
                         <h2>ZetoShop</h2>
                         <p>Графический редактор для обработки изображений с различными инструментами, фильтрами и эффектами</p>
                         <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
-                        <a href="https://drive.google.com/file/d/1bN6nZqRIEPNZc85v3MSaIXtVOApoi9Ur/view?usp=sharing" class="download-btn" onclick="return registerDownload('zetoshop', 'Скачивание ZetoShop')">
+                        <a href="https://drive.google.com/file/d/1bN6nZqRIEPNZc85v3MSaIXtVOApoi9Ur/view?usp=sharing" class="download-btn">
                             <i class="fas fa-download"></i> Скачать ZetoShop
                         </a>
-                        <div class="download-count" title="Загрузок / использований">
-                            <i class="fas fa-download"></i> <span id="zetoshop-downloads">0</span> загрузок
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1178,7 +798,6 @@
             <p class="section-subtitle">Увлекательные игры для отдыха и развития</p>
             
             <div class="apps-grid">
-                <!-- MapGame Android - новая карточка для Android версии -->
                 <div class="app-card">
                     <div class="app-icon" style="background: #27ae60;">
                         <i class="fab fa-android"></i>
@@ -1187,12 +806,9 @@
                         <h2>MapGame Android</h2>
                         <p>Создавайте и редактируйте карты на своем Android устройстве! Полная версия конструктора карт для мобильных устройств.</p>
                         <span class="platform-tag"><i class="fab fa-android"></i> Android</span>
-                        <a href="https://drive.google.com/file/d/1f52G5apQgsqxF4fT-r3vZXApvX_Ko5UX/view?usp=sharing" class="download-btn" style="background: linear-gradient(to right, #27ae60, #2ecc71);" onclick="return registerDownload('mapgame-android', 'Скачивание MapGame Android')">
+                        <a href="https://drive.google.com/file/d/1f52G5apQgsqxF4fT-r3vZXApvX_Ko5UX/view?usp=sharing" class="download-btn" style="background: linear-gradient(to right, #27ae60, #2ecc71);">
                             <i class="fas fa-download"></i> Скачать MapGame для Android
                         </a>
-                        <div class="download-count" title="Загрузок / использований">
-                            <i class="fas fa-download"></i> <span id="mapgame-android-downloads">0</span> загрузок
-                        </div>
                     </div>
                 </div>
 
@@ -1204,12 +820,9 @@
                         <h2>Конструктор карт (Web)</h2>
                         <p>Создавайте и редактируйте карты в браузере. Игра с локальным сохранением, не требует установки.</p>
                         <span class="platform-tag"><i class="fas fa-globe"></i> Кроссплатформенный</span>
-                        <a href="https://kotnot.github.io/MapGame/" class="download-btn" style="background: linear-gradient(to right, #9b59b6, #8e44ad);" onclick="return registerDownload('map-game', 'Переход в конструктор карт')">
+                        <a href="https://kotnot.github.io/MapGame/" class="download-btn" style="background: linear-gradient(to right, #9b59b6, #8e44ad);">
                             <i class="fas fa-gamepad"></i> Открыть конструктор карт
                         </a>
-                        <div class="download-count" title="Загрузок / использований">
-                            <i class="fas fa-download"></i> <span id="map-game-downloads">0</span> использований
-                        </div>
                     </div>
                 </div>
 
@@ -1221,12 +834,9 @@
                         <h2>MonsterFire Tanks</h2>
                         <p>Танки, выигрывайте и прокачивайте свой скилл! В игре есть много режимов!</p>
                         <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
-                        <a href="https://drive.google.com/file/d/10_4g77Vw5CAtskeQUR5SLw4q9-oY7LUZ/view?usp=sharing" class="download-btn" style="background: linear-gradient(to right, #e67e22, #d35400);" onclick="return registerDownload('monsterfire-tanks', 'Скачивание MonsterFire Tanks')">
+                        <a href="https://drive.google.com/file/d/10_4g77Vw5CAtskeQUR5SLw4q9-oY7LUZ/view?usp=sharing" class="download-btn" style="background: linear-gradient(to right, #e67e22, #d35400);">
                             <i class="fas fa-download"></i> Скачать игру (MonsterFire Tanks)
                         </a>
-                        <div class="download-count" title="Загрузок / использований">
-                            <i class="fas fa-download"></i> <span id="monsterfire-tanks-downloads">0</span> загрузок
-                        </div>
                     </div>
                 </div>
 
@@ -1238,12 +848,9 @@
                         <h2>Симулятор кумыса</h2>
                         <p>Собирай ингредиенты, готовь и пей кумыс. Погрузись в процесс приготовления национального напитка!</p>
                         <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
-                        <a href="https://drive.google.com/file/d/1K1CEnWjUpxBKQPwuk6uQjtNQO-kSHU25/view?usp=sharing" class="download-btn" style="background: linear-gradient(to right, #f1c40f, #e67e22);" onclick="return registerDownload('kumys-simulator', 'Скачивание симулятора кумыса')">
+                        <a href="https://drive.google.com/file/d/1K1CEnWjUpxBKQPwuk6uQjtNQO-kSHU25/view?usp=sharing" class="download-btn" style="background: linear-gradient(to right, #f1c40f, #e67e22);">
                             <i class="fas fa-download"></i> Скачать игру (Симулятор кумыса)
                         </a>
-                        <div class="download-count" title="Загрузок / использований">
-                            <i class="fas fa-download"></i> <span id="kumys-simulator-downloads">0</span> загрузок
-                        </div>
                     </div>
                 </div>
                 
@@ -1255,12 +862,9 @@
                         <h2>GlobalSimulator</h2>
                         <p>Глобальный симулятор управления — стройте империю, управляйте ресурсами и принимайте важные политические решения!</p>
                         <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
-                        <a href="https://drive.google.com/file/d/1iuDqhK7sgHvbQXVoY_MXUG1btSzIrmaI/view?usp=drive_link" class="download-btn" onclick="return registerDownload('global-simulator', 'Скачивание GlobalSimulator')">
+                        <a href="https://drive.google.com/file/d/1iuDqhK7sgHvbQXVoY_MXUG1btSzIrmaI/view?usp=drive_link" class="download-btn">
                             <i class="fas fa-download"></i> Скачать игру (GlobalSimulator)
                         </a>
-                        <div class="download-count" title="Загрузок / использований">
-                            <i class="fas fa-download"></i> <span id="global-simulator-downloads">0</span> загрузок
-                        </div>
                     </div>
                 </div>
                 
@@ -1272,12 +876,9 @@
                         <h2>School Simulator</h2>
                         <p>Симулятор школы с реалистичной системой уроков, оценок и взаимодействия с персонажами</p>
                         <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
-                        <a href="SchoolSimulator_Setup.exe" class="download-btn" onclick="return registerDownload('school-simulator', 'Скачивание School Simulator')">
+                        <a href="SchoolSimulator_Setup.exe" class="download-btn">
                             <i class="fas fa-download"></i> Скачать симулятор школы
                         </a>
-                        <div class="download-count" title="Загрузок / использований">
-                            <i class="fas fa-download"></i> <span id="school-simulator-downloads">0</span> загрузок
-                        </div>
                     </div>
                 </div>
 
@@ -1289,12 +890,9 @@
                         <h2>Симулятор ненависти</h2>
                         <p>Не разбудите уганду наклз!</p>
                         <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
-                        <a href="https://drive.google.com/file/d/1iFtBRl0_PnTckn_hdZUAF0XgJNnNVoWF/view?usp=sharing" class="download-btn" style="background: linear-gradient(to right, #c0392b, #96281b);" onclick="return registerDownload('hate-simulator', 'Скачивание симулятора ненависти')">
+                        <a href="https://drive.google.com/file/d/1iFtBRl0_PnTckn_hdZUAF0XgJNnNVoWF/view?usp=sharing" class="download-btn" style="background: linear-gradient(to right, #c0392b, #96281b);">
                             <i class="fas fa-download"></i> Скачать игру (Симулятор ненависти)
                         </a>
-                        <div class="download-count" title="Загрузок / использований">
-                            <i class="fas fa-download"></i> <span id="hate-simulator-downloads">0</span> загрузок
-                        </div>
                     </div>
                 </div>
                 
@@ -1306,15 +904,12 @@
                         <h2>Monster Fire</h2>
                         <p>Захватывающий шутер, где вы сражаетесь с монстрами в огненном мире. Игра доступна онлайн в браузере.</p>
                         <span class="platform-tag"><i class="fas fa-globe"></i> Кроссплатформенный</span>
-                        <a href="https://kotnot.github.io/MonsterFire/" class="download-btn" style="background: linear-gradient(to right, #e74c3c, #c0392b);" onclick="return registerDownload('monsterfire-online', 'Переход в Monster Fire')">
+                        <a href="https://kotnot.github.io/MonsterFire/" class="download-btn" style="background: linear-gradient(to right, #e74c3c, #c0392b);">
                             <i class="fas fa-gamepad"></i> Играть онлайн
                         </a>
-                        <a href="https://github.com/kotnot/MonsterFire" class="download-btn" style="margin-top: 10px; background: linear-gradient(to right, #333, #555);" onclick="return registerDownload('monsterfire-github', 'Переход в GitHub Monster Fire')">
+                        <a href="https://github.com/kotnot/MonsterFire" class="download-btn" style="margin-top: 10px; background: linear-gradient(to right, #333, #555);">
                             <i class="fab fa-github"></i> Исходный код
                         </a>
-                        <div class="download-count" title="Загрузок / использований">
-                            <i class="fas fa-download"></i> <span id="monsterfire-online-downloads">0</span> использований
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1331,12 +926,9 @@
                         <h2>Gitrex Message Linux</h2>
                         <p>Мессенджер для Linux с поддержкой облачных сообщений, файлами и групповыми чатами</p>
                         <span class="platform-tag"><i class="fab fa-linux"></i> Linux</span>
-                        <a href="https://drive.google.com/file/d/1h5vFt_vtsMWBcQRCc5qaLfkSk9oWz39l/view?usp=sharing" class="download-btn" onclick="return registerDownload('gitrex-linux', 'Скачивание Gitrex Linux')">
+                        <a href="https://drive.google.com/file/d/1h5vFt_vtsMWBcQRCc5qaLfkSk9oWz39l/view?usp=sharing" class="download-btn">
                             <i class="fas fa-download"></i> Скачать для Linux
                         </a>
-                        <div class="download-count" title="Загрузок / использований">
-                            <i class="fas fa-download"></i> <span id="gitrex-linux-downloads">0</span> загрузок
-                        </div>
                     </div>
                 </div>
                 
@@ -1348,12 +940,24 @@
                         <h2>Gitrex Message Windows</h2>
                         <p>Мессенджер для Windows с интуитивным интерфейсом, быстрым обменом сообщениями и эмодзи</p>
                         <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
-                        <a href="https://drive.google.com/file/d/1EaW8n8dH3xkk1zzviVmy7sGYgANAn9df/view?usp=drive_link" class="download-btn" onclick="return registerDownload('gitrex-windows', 'Скачивание Gitrex Windows')">
+                        <a href="https://drive.google.com/file/d/1EaW8n8dH3xkk1zzviVmy7sGYgANAn9df/view?usp=drive_link" class="download-btn">
                             <i class="fas fa-download"></i> Скачать для Windows
                         </a>
-                        <div class="download-count" title="Загрузок / использований">
-                            <i class="fas fa-download"></i> <span id="gitrex-windows-downloads">0</span> загрузок
-                        </div>
+                    </div>
+                </div>
+
+                <!-- Gitrex Message Mobile Android -->
+                <div class="app-card">
+                    <div class="app-icon" style="background: #3ddc84;">
+                        <i class="fab fa-android"></i>
+                    </div>
+                    <div class="app-content">
+                        <h2>Gitrex Message Mobile</h2>
+                        <p>Мессенджер для Android с шифрованием, поддержкой голосовых сообщений, стикеров и групповых чатов. Общайтесь где угодно!</p>
+                        <span class="platform-tag"><i class="fab fa-android"></i> Android (APK)</span>
+                        <a href="https://drive.google.com/file/d/10H8IjiyCvtibEJtZ7zGfWp2MOIQ-rTOI/view?usp=drive_link" class="download-btn" style="background: linear-gradient(to right, #3ddc84, #00a86b);">
+                            <i class="fas fa-download"></i> Скачать APK для Android
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1370,12 +974,9 @@
                             <h2>GitrexOS</h2>
                             <p>Операционная система с поддержкой приложений, файлового менеджера, текстового редактора и GPF Studio для разработки</p>
                             <span class="platform-tag"><i class="fas fa-microchip"></i> x86 архитектура</span>
-                            <a href="gitrexos.img" class="download-btn" onclick="return registerDownload('gitrexos', 'Скачивание GitrexOS')">
+                            <a href="gitrexos.img" class="download-btn">
                                 <i class="fas fa-download"></i> Скачать образ
                             </a>
-                            <div class="download-count" title="Загрузок / использований">
-                                <i class="fas fa-download"></i> <span id="gitrexos-downloads">0</span> загрузок
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1391,13 +992,13 @@
                 
                 <p style="margin-top: 20px; margin-bottom: 15px;">Или напишите нам в соцсетях:</p>
                 <div class="social-links" style="margin-top: 15px; justify-content: center;">
-                    <a href="https://github.com/kotnot" class="social-btn github" target="_blank" onclick="return registerDownload('social-github', 'Переход в GitHub')">
+                    <a href="https://github.com/kotnot" class="social-btn github" target="_blank">
                         <i class="fab fa-github"></i> GitHub
                     </a>
-                    <a href="https://www.youtube.com/@kotnot01" class="social-btn youtube" target="_blank" onclick="return registerDownload('social-youtube', 'Переход в YouTube')">
+                    <a href="https://www.youtube.com/@kotnot01" class="social-btn youtube" target="_blank">
                         <i class="fab fa-youtube"></i> YouTube
                     </a>
-                    <a href="https://t.me/KotnotLive" class="social-btn telegram" target="_blank" onclick="return registerDownload('social-telegram', 'Переход в Telegram')">
+                    <a href="https://t.me/KotnotLive" class="social-btn telegram" target="_blank">
                         <i class="fab fa-telegram"></i> Telegram
                     </a>
                 </div>
@@ -1504,10 +1105,14 @@ func main() -> int {
                         <div id="gitrex-message-doc" class="doc-section" style="display: none;">
                             <h2><i class="fas fa-comments"></i> Gitrex Message - Документация</h2>
                             <div class="doc-note">
-                                <strong>Версия:</strong> 1.4 | <strong>Платформы:</strong> Windows, Linux
+                                <strong>Версия:</strong> 1.5 | <strong>Платформы:</strong> Windows, Linux, Android
                             </div>
                             <h3>Описание</h3>
-                            <p>Gitrex Message - безопасный мессенджер.</p>
+                            <p>Gitrex Message - безопасный мессенджер с поддержкой всех платформ.</p>
+                            
+                            <h3>Установка на Android</h3>
+                            <p>Скачайте APK файл с главной страницы и установите его на ваше устройство. Разрешите установку из неизвестных источников в настройках Android.</p>
+                            
                             <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
                                 <i class="fas fa-arrow-up"></i> Наверх
                             </a>
@@ -1541,465 +1146,32 @@ func main() -> int {
             </div>
         </div>
 
-        <div id="stats-page" class="page">
-            <div class="stats-page">
-                <div class="stats-header">
-                    <h1><i class="fas fa-chart-bar"></i> Статистика скачиваний</h1>
-                    <p>Общая статистика по всем приложениям Perfectic Inc 
-                        <button class="refresh-btn" onclick="loadStats()" title="Обновить данные">
-                            <i class="fas fa-sync-alt"></i>
-                        </button>
-                    </p>
-                </div>
-
-                <div id="stats-loading" class="loading" style="display: none;">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Загрузка статистики...</p>
-                </div>
-
-                <div id="stats-error" class="error-message" style="display: none;">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <p>Ошибка загрузки статистики.</p>
-                </div>
-
-                <div id="stats-content" style="display: none;">
-                    <div class="total-downloads">
-                        <h2><i class="fas fa-download"></i> Всего скачиваний</h2>
-                        <div class="total-number" id="totalDownloads">0</div>
-                        <p>За всё время</p>
-                        <div class="last-updated" id="lastUpdated">Обновлено: загрузка...</div>
-                    </div>
-
-                    <div class="category-stats" id="categoryStats"></div>
-
-                    <div class="daily-chart">
-                        <h3><i class="fas fa-calendar-alt"></i> Скачивания за последние 14 дней</h3>
-                        <div class="daily-bars" id="dailyBars"></div>
-                    </div>
-
-                    <h3><i class="fas fa-chart-line"></i> Статистика по приложениям</h3>
-                    <div class="stats-grid" id="statsGrid"></div>
-
-                    <div class="popular-apps">
-                        <h3><i class="fas fa-crown"></i> Топ популярных приложений</h3>
-                        <ul class="popular-list" id="topAppsList"></ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <footer>
             <p>2025 Perfectic Inc</p>
             <div style="margin-top: 15px;">
-                <a href="https://github.com/kotnot" style="color: #333; text-decoration: none; margin: 0 10px;" onclick="return registerDownload('social-github', 'Переход в GitHub')">
+                <a href="https://github.com/kotnot" style="color: #333; text-decoration: none; margin: 0 10px;">
                     <i class="fab fa-github"></i> GitHub
                 </a>
-                <a href="https://www.youtube.com/@kotnot01" style="color: #ff0000; text-decoration: none; margin: 0 10px;" onclick="return registerDownload('social-youtube', 'Переход в YouTube')">
+                <a href="https://www.youtube.com/@kotnot01" style="color: #ff0000; text-decoration: none; margin: 0 10px;">
                     <i class="fab fa-youtube"></i> YouTube
                 </a>
-                <a href="https://t.me/KotnotLive" style="color: #0088cc; text-decoration: none; margin: 0 10px;" onclick="return registerDownload('social-telegram', 'Переход в Telegram')">
+                <a href="https://t.me/KotnotLive" style="color: #0088cc; text-decoration: none; margin: 0 10px;">
                     <i class="fab fa-telegram"></i> Telegram
                 </a>
             </div>
         </footer>
     </div>
 
-    <!-- PyScript секция с исправленным синтаксисом -->
-    <script type="py" config="{
-        \"packages\": []
-    }">
-import json
-from datetime import datetime, timedelta
-from js import document, window, console, localStorage
-from pyodide.ffi import create_proxy
-import asyncio
-
-# Список всех приложений
-APPS = {
-    'kotnotAI': {'name': 'KotnotAI', 'category': 'ai', 'platform': 'web'},
-    'kotnotC-compiler': {'name': 'Kotnot-C Компилятор', 'category': 'development', 'platform': 'windows'},
-    'kotnotnet': {'name': 'KotnotNET', 'category': 'development', 'platform': 'windows'},
-    'browser-zet': {'name': 'Browser Zet', 'category': 'browser', 'platform': 'windows'},
-    'zetoshop': {'name': 'ZetoShop', 'category': 'graphics', 'platform': 'windows'},
-    'gitrex-linux': {'name': 'Gitrex Message Linux', 'category': 'messenger', 'platform': 'linux'},
-    'gitrex-windows': {'name': 'Gitrex Message Windows', 'category': 'messenger', 'platform': 'windows'},
-    'map-game': {'name': 'Конструктор карт (Web)', 'category': 'game', 'platform': 'web'},
-    'mapgame-android': {'name': 'MapGame Android', 'category': 'game', 'platform': 'android'},
-    'monsterfire-tanks': {'name': 'MonsterFire Tanks', 'category': 'game', 'platform': 'windows'},
-    'kumys-simulator': {'name': 'Симулятор кумыса', 'category': 'game', 'platform': 'windows'},
-    'global-simulator': {'name': 'GlobalSimulator', 'category': 'game', 'platform': 'windows'},
-    'school-simulator': {'name': 'School Simulator', 'category': 'game', 'platform': 'windows'},
-    'hate-simulator': {'name': 'Симулятор ненависти', 'category': 'game', 'platform': 'windows'},
-    'monsterfire-online': {'name': 'Monster Fire', 'category': 'game', 'platform': 'web'},
-    'monsterfire-github': {'name': 'Monster Fire GitHub', 'category': 'game', 'platform': 'web'},
-    'gitrexos': {'name': 'GitrexOS', 'category': 'os', 'platform': 'x86'},
-    'social-github': {'name': 'GitHub', 'category': 'social', 'platform': 'web'},
-    'social-youtube': {'name': 'YouTube', 'category': 'social', 'platform': 'web'},
-    'social-telegram': {'name': 'Telegram', 'category': 'social', 'platform': 'web'}
-}
-
-def load_stats():
-    """Загрузка статистики из localStorage"""
-    try:
-        stats_str = localStorage.getItem('perfectic_stats')
-        if stats_str:
-            return json.loads(stats_str)
-        else:
-            return init_stats()
-    except Exception as e:
-        console.error(f"Error loading stats: {e}")
-        return init_stats()
-
-def save_stats(stats):
-    """Сохранение статистики в localStorage"""
-    try:
-        localStorage.setItem('perfectic_stats', json.dumps(stats, ensure_ascii=False))
-    except Exception as e:
-        console.error(f"Error saving stats: {e}")
-
-def init_stats():
-    """Инициализация статистики"""
-    stats = {
-        'total_downloads': 0,
-        'apps': {},
-        'daily_stats': {},
-        'last_updated': datetime.now().isoformat()
-    }
-    
-    for app_id, app_info in APPS.items():
-        stats['apps'][app_id] = {
-            'name': app_info['name'],
-            'category': app_info['category'],
-            'platform': app_info['platform'],
-            'total': 0,
-            'weekly': 0,
-            'monthly': 0
-        }
-    
-    save_stats(stats)
-    return stats
-
-def update_stats(stats, app_id):
-    """Обновление статистики для приложения"""
-    if app_id not in stats['apps']:
-        return None
-    
-    current_date = datetime.now().date().isoformat()
-    
-    stats['total_downloads'] += 1
-    stats['apps'][app_id]['total'] += 1
-    
-    if current_date not in stats['daily_stats']:
-        stats['daily_stats'][current_date] = {}
-    if app_id not in stats['daily_stats'][current_date]:
-        stats['daily_stats'][current_date][app_id] = 0
-    stats['daily_stats'][current_date][app_id] += 1
-    
-    # Обновляем недельную и месячную статистику
-    now = datetime.now()
-    week_ago = now - timedelta(days=7)
-    month_ago = now - timedelta(days=30)
-    
-    weekly_total = 0
-    monthly_total = 0
-    
-    for date, daily_data in stats['daily_stats'].items():
-        try:
-            date_obj = datetime.strptime(date, '%Y-%m-%d')
-            if app_id in daily_data:
-                if date_obj >= week_ago:
-                    weekly_total += daily_data[app_id]
-                if date_obj >= month_ago:
-                    monthly_total += daily_data[app_id]
-        except:
-            pass
-    
-    stats['apps'][app_id]['weekly'] = weekly_total
-    stats['apps'][app_id]['monthly'] = monthly_total
-    
-    stats['last_updated'] = datetime.now().isoformat()
-    save_stats(stats)
-    
-    return stats['apps'][app_id]['total']
-
-def get_detailed_stats():
-    """Получение детальной статистики"""
-    stats = load_stats()
-    
-    apps_list = []
-    for app_id, app_data in stats['apps'].items():
-        apps_list.append({
-            'id': app_id,
-            'name': app_data['name'],
-            'category': app_data['category'],
-            'platform': app_data['platform'],
-            'total': app_data['total'],
-            'weekly': app_data['weekly'],
-            'monthly': app_data['monthly']
-        })
-    
-    apps_list.sort(key=lambda x: x['total'], reverse=True)
-    
-    # Ежедневная статистика за последние 30 дней
-    daily_data = []
-    now = datetime.now()
-    
-    for i in range(30):
-        date = (now - timedelta(days=i)).date().isoformat()
-        daily_total = 0
-        if date in stats['daily_stats']:
-            daily_total = sum(stats['daily_stats'][date].values())
-        daily_data.append({
-            'date': date,
-            'count': daily_total
-        })
-    
-    daily_data.reverse()
-    
-    return {
-        'total_downloads': stats['total_downloads'],
-        'apps': apps_list,
-        'daily': daily_data[-30:],
-        'last_updated': stats['last_updated']
-    }
-
-# JavaScript функции
-async def register_download_js(app_id, action):
-    """Регистрация скачивания из JavaScript"""
-    try:
-        console.log(f"Регистрация скачивания: {app_id}")
-        stats = load_stats()
-        total = update_stats(stats, app_id)
-        
-        if total is not None:
-            element = document.getElementById(f"{app_id}-downloads")
-            if element:
-                element.textContent = total.toLocaleString()
-            return {'success': True, 'total': total}
-        else:
-            return {'success': False, 'error': 'App not found'}
-    except Exception as e:
-        console.error(f"Error: {str(e)}")
-        return {'success': False, 'error': str(e)}
-
-async def get_stats_js():
-    """Получение статистики для JavaScript"""
-    try:
-        console.log("Получение статистики")
-        stats = get_detailed_stats()
-        return stats
-    except Exception as e:
-        console.error(f"Error: {str(e)}")
-        return {'error': str(e)}
-
-# Делаем функции доступными из JavaScript
-window.registerDownload = create_proxy(register_download_js)
-window.getStats = create_proxy(get_stats_js)
-
-# Сигнализируем о готовности
-status_div = document.getElementById("pyscript-status")
-if status_div:
-    status_div.classList.remove("loading")
-    status_div.classList.add("active")
-    status_div.innerHTML = '<i class="fas fa-check"></i> Python готов! Статистика сохраняется в localStorage'
-
-console.log("✅ Python готов к работе!")
-    </script>
-
     <script>
-        // Функция регистрации скачивания
-        async function registerDownload(appId, action) {
-            if (typeof window.registerDownload !== 'function') {
-                console.log('PyScript еще не готов');
-                return handleDownloadLocal(appId);
-            }
-            
-            try {
-                const result = await window.registerDownload(appId, action);
-                if (result && result.success) {
-                    updateCounter(appId, result.total);
-                }
-            } catch (error) {
-                console.error('Ошибка регистрации скачивания:', error);
-                handleDownloadLocal(appId);
-            }
-            return true;
-        }
-
-        function handleDownloadLocal(appId) {
-            let stats = JSON.parse(localStorage.getItem('downloadStats') || '{}');
-            stats[appId] = (stats[appId] || 0) + 1;
-            localStorage.setItem('downloadStats', JSON.stringify(stats));
-            updateCounter(appId, stats[appId]);
-            return true;
-        }
-
-        function updateCounter(appId, count) {
-            const element = document.getElementById(`${appId}-downloads`);
-            if (element) element.textContent = count.toLocaleString();
-        }
-
-        // Загрузка статистики
-        async function loadStats() {
-            const loadingEl = document.getElementById('stats-loading');
-            const errorEl = document.getElementById('stats-error');
-            const contentEl = document.getElementById('stats-content');
-            
-            loadingEl.style.display = 'block';
-            errorEl.style.display = 'none';
-            contentEl.style.display = 'none';
-            
-            if (typeof window.getStats !== 'function') {
-                loadingEl.style.display = 'none';
-                errorEl.style.display = 'block';
-                errorEl.querySelector('p').textContent = 'PyScript еще не загружен. Попробуйте обновить страницу.';
-                return;
-            }
-            
-            try {
-                const stats = await window.getStats();
-                
-                if (stats.error) {
-                    throw new Error(stats.error);
-                }
-                
-                document.getElementById('totalDownloads').textContent = stats.total_downloads.toLocaleString();
-                document.getElementById('lastUpdated').textContent = `Обновлено: ${new Date(stats.last_updated).toLocaleString()}`;
-                
-                stats.apps.forEach(app => updateCounter(app.id, app.total));
-                createStatsCards(stats.apps);
-                createCategoryStats(stats.apps);
-                createDailyChart(stats.daily);
-                createTopAppsList(stats.apps);
-                
-                loadingEl.style.display = 'none';
-                contentEl.style.display = 'block';
-            } catch (error) {
-                console.error('Ошибка:', error);
-                loadingEl.style.display = 'none';
-                errorEl.style.display = 'block';
-            }
-        }
-
-        function createStatsCards(apps) {
-            const grid = document.getElementById('statsGrid');
-            if (!grid) return;
-            grid.innerHTML = '';
-            
-            apps.forEach(app => {
-                const card = document.createElement('div');
-                card.className = 'stat-card';
-                
-                let icon = 'fa-cogs';
-                if (app.category === 'ai') icon = 'fa-robot';
-                else if (app.category === 'game') icon = 'fa-gamepad';
-                else if (app.category === 'browser') icon = 'fa-globe';
-                else if (app.category === 'messenger') icon = 'fa-comments';
-                else if (app.category === 'os') icon = 'fa-laptop-code';
-                
-                card.innerHTML = `
-                    <div class="stat-icon"><i class="fas ${icon}"></i></div>
-                    <div class="stat-info">
-                        <h3>${app.name}</h3>
-                        <div class="stat-number">${(app.total || 0).toLocaleString()}</div>
-                        <div class="stat-period">
-                            <span>7д: ${app.weekly || 0}</span>
-                            <span>30д: ${app.monthly || 0}</span>
-                        </div>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        function createCategoryStats(apps) {
-            const container = document.getElementById('categoryStats');
-            if (!container) return;
-            
-            const categories = {};
-            const categoryNames = {
-                'ai': 'ИИ', 'development': 'Разработка', 'browser': 'Браузеры',
-                'messenger': 'Мессенджеры', 'game': 'Игры', 'os': 'ОС', 
-                'graphics': 'Графика', 'social': 'Соцсети'
-            };
-            
-            apps.forEach(app => {
-                if (!categories[app.category]) {
-                    categories[app.category] = { total: 0, count: 0 };
-                }
-                categories[app.category].total += app.total || 0;
-                categories[app.category].count++;
-            });
-            
-            container.innerHTML = '';
-            
-            for (const [cat, data] of Object.entries(categories)) {
-                const card = document.createElement('div');
-                card.className = 'category-card';
-                card.innerHTML = `
-                    <h4>${categoryNames[cat] || cat}</h4>
-                    <div class="category-total">${data.total.toLocaleString()}</div>
-                    <div class="category-count">${data.count} приложений</div>
-                `;
-                container.appendChild(card);
-            }
-        }
-
-        function createDailyChart(dailyData) {
-            const container = document.getElementById('dailyBars');
-            if (!container) return;
-            
-            container.innerHTML = '';
-            
-            if (!dailyData || dailyData.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: #7f8c8d;">Нет данных</p>';
-                return;
-            }
-            
-            const last14 = dailyData.slice(-14);
-            const maxCount = Math.max(...last14.map(d => d.count), 1);
-            last14.forEach(day => {
-                const barContainer = document.createElement('div');
-                barContainer.className = 'daily-bar-container';
-                const height = (day.count / maxCount) * 150;
-                barContainer.innerHTML = `
-                    <div class="daily-bar" style="height: ${height}px;"></div>
-                    <div class="daily-label">${day.count}</div>
-                    <div class="daily-label">${new Date(day.date).getDate()}</div>
-                `;
-                container.appendChild(barContainer);
-            });
-        }
-
-        function createTopAppsList(apps) {
-            const list = document.getElementById('topAppsList');
-            if (!list) return;
-            
-            list.innerHTML = '';
-            
-            apps.slice(0, 5).forEach((app, index) => {
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    <span class="popular-rank">${index + 1}</span>
-                    <div class="popular-info">
-                        <h4>${app.name}</h4>
-                        <p>${app.category}</p>
-                    </div>
-                    <div class="popular-downloads">${(app.total || 0).toLocaleString()} загрузок</div>
-                `;
-                list.appendChild(li);
-            });
-        }
-
         function showPage(pageName) {
-            const pages = ['main', 'doc', 'stats'];
+            const pages = ['main', 'doc'];
             pages.forEach(p => {
                 const page = document.getElementById(`${p}-page`);
                 if (page) page.classList.remove('active');
             });
             const targetPage = document.getElementById(`${pageName}-page`);
             if (targetPage) targetPage.classList.add('active');
-            document.title = `Perfectic Inc - ${pageName === 'main' ? 'Главная' : pageName === 'doc' ? 'Документация' : 'Статистика'}`;
+            document.title = `Perfectic Inc - ${pageName === 'main' ? 'Главная' : 'Документация'}`;
             history.pushState({page: pageName}, '', `#${pageName}`);
         }
 
@@ -2046,13 +1218,12 @@ console.log("✅ Python готов к работе!")
             if (overlay) overlay.classList.remove('active');
         }
 
-        window.loadStats = loadStats;
-
         window.addEventListener('popstate', function() {
             const hash = window.location.hash.substring(1);
-            if (['main', 'doc', 'stats'].includes(hash)) {
-                showPage(hash);
-                if (hash === 'stats') loadStats();
+            if (hash === 'main') {
+                showPage('main');
+            } else if (hash === 'doc') {
+                showPage('doc');
             } else if (hash) {
                 showPage('doc');
                 showDocSection(hash);
@@ -2063,10 +1234,7 @@ console.log("✅ Python готов к работе!")
 
         document.addEventListener('DOMContentLoaded', function() {
             const hash = window.location.hash.substring(1);
-            if (hash === 'stats') {
-                showPage('stats');
-                setTimeout(loadStats, 2000);
-            } else if (hash === 'doc') {
+            if (hash === 'doc') {
                 showPage('doc');
             } else if (hash) {
                 showPage('doc');
