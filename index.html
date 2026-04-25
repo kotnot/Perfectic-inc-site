@@ -196,6 +196,11 @@
             color: #2c3e50;
             margin-bottom: 10px;
             font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .app-content p {
@@ -225,6 +230,17 @@
         .download-btn:hover {
             background: linear-gradient(to right, #3367d6, #2e8b57);
             transform: scale(1.03);
+        }
+
+        .badge-dev {
+            background: #f39c12;
+            color: white;
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-left: 10px;
+            white-space: nowrap;
         }
 
         .platform-tag {
@@ -487,12 +503,6 @@
             margin: 15px 0;
         }
 
-        .doc-section pre code {
-            background: none;
-            padding: 0;
-            color: #333;
-        }
-
         .doc-note {
             background: #e8f4fc;
             border-left: 4px solid #4285f4;
@@ -519,100 +529,6 @@
         .back-to-top:hover {
             background: #4285f4;
             color: white;
-        }
-
-        .recaptcha-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-        }
-
-        .recaptcha-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .recaptcha-modal {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            transform: scale(0.9);
-            transition: all 0.3s;
-        }
-
-        .recaptcha-overlay.active .recaptcha-modal {
-            transform: scale(1);
-        }
-
-        .recaptcha-icon {
-            width: 80px;
-            height: 80px;
-            background: #f39c12;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            margin: 0 auto 20px;
-        }
-
-        .recaptcha-modal h2 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-
-        .recaptcha-modal p {
-            color: #7f8c8d;
-            margin-bottom: 25px;
-        }
-
-        .recaptcha-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-        }
-
-        .recaptcha-btn {
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: none;
-        }
-
-        .recaptcha-btn.confirm {
-            background: #f39c12;
-            color: white;
-        }
-
-        .recaptcha-btn.confirm:hover {
-            background: #e67e22;
-            transform: translateY(-2px);
-        }
-
-        .recaptcha-btn.cancel {
-            background: #e9ecef;
-            color: #7f8c8d;
-        }
-
-        .recaptcha-btn.cancel:hover {
-            background: #dee2e6;
         }
 
         @media (max-width: 768px) {
@@ -671,24 +587,6 @@
                 <i class="fas fa-book"></i> Документация
             </button>
         </nav>
-
-        <div class="recaptcha-overlay" id="recaptchaOverlay">
-            <div class="recaptcha-modal">
-                <div class="recaptcha-icon">
-                    <i class="fas fa-fire"></i>
-                </div>
-                <h2>FireFigeron reCAPTCHA</h2>
-                <p>Пожалуйста, подтвердите, что вы не робот, и у вас горит огонь в душе!</p>
-                <div class="recaptcha-buttons">
-                    <button class="recaptcha-btn confirm" onclick="confirmRecaptcha()">
-                        <i class="fas fa-fire"></i> Я не робот, у меня огонь!
-                    </button>
-                    <button class="recaptcha-btn cancel" onclick="cancelRecaptcha()">
-                        Отмена
-                    </button>
-                </div>
-            </div>
-        </div>
 
         <div id="main-page" class="page active">
             <header>
@@ -813,7 +711,7 @@
                 </div>
 
                 <div class="app-card">
-                    <div class="app-icon">
+                    <div class="app-icon" style="background: #9b59b6;">
                         <i class="fas fa-map"></i>
                     </div>
                     <div class="app-content">
@@ -825,23 +723,50 @@
                         </a>
                     </div>
                 </div>
-
+                
+                <!-- Monster Fire 2 -->
                 <div class="app-card">
-                    <div class="app-icon" style="background: #e67e22;">
-                        <i class="fas fa-tank"></i>
-                    </div>
-
-                <div class="app-card">
-                    <div class="app-icon" style="background: #f1c40f;">
-                        <i class="fas fa-mug-hot"></i>
+                    <div class="app-icon" style="background: #e74c3c;">
+                        <i class="fas fa-fire"></i>
                     </div>
                     <div class="app-content">
-                        <h2>Симулятор кумыса</h2>
-                        <p>Собирай ингредиенты, готовь и пей кумыс. Погрузись в процесс приготовления национального напитка!</p>
-                        <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
-                        <a href="https://drive.google.com/file/d/1K1CEnWjUpxBKQPwuk6uQjtNQO-kSHU25/view?usp=sharing" class="download-btn" style="background: linear-gradient(to right, #f1c40f, #e67e22);">
-                            <i class="fas fa-download"></i> Скачать игру (Симулятор кумыса)
+                        <h2>Monster Fire 2</h2>
+                        <p>Танки и сухопутные войска! Эпичный экшен с монстрами и огнем. Уничтожай врагов и спасай мир!</p>
+                        <span class="platform-tag"><i class="fas fa-globe"></i> Кроссплатформенный</span>
+                        <a href="https://kotnot.github.io/MonsterFire/" class="download-btn" style="background: linear-gradient(to right, #e74c3c, #c0392b);">
+                            <i class="fas fa-gamepad"></i> Играть онлайн (Monster Fire 2)
                         </a>
+                        <a href="https://github.com/kotnot/MonsterFire" class="download-btn" style="margin-top: 10px; background: linear-gradient(to right, #333, #555);">
+                            <i class="fab fa-github"></i> Исходный код
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon" style="background: #f1c40f;">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="app-content">
+                        <h2>Симулятор готовки</h2>
+                        <p>Собирай ингредиенты, готовь вкусные блюда и становись шеф-поваром! Погрузись в процесс кулинарии.</p>
+                        <span class="platform-tag"><i class="fab fa-windows"></i> Windows</span>
+                        <a href="https://drive.google.com/file/d/1TDgWJRCZvjoa3jeXO8RfulgqOAVn-a6y/view?usp=sharing" class="download-btn" style="background: linear-gradient(to right, #f1c40f, #e67e22);">
+                            <i class="fas fa-download"></i> Скачать игру (Симулятор готовки)
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="app-icon" style="background: #c0392b;">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="app-content">
+                        <h2>Spartan <span class="badge-dev">В разработке</span></h2>
+                        <p>Описание скоро. Эпичный проект о спартанцах, битвах и доблести. Следите за новостями!</p>
+                        <span class="platform-tag"><i class="fas fa-globe"></i> Платформа: TBA</span>
+                        <button class="download-btn" disabled style="background: linear-gradient(to right, #95a5a6, #7f8c8d); opacity:0.7; cursor:not-allowed;">
+                            <i class="fas fa-hourglass-half"></i> Скоро
+                        </button>
                     </div>
                 </div>
                 
@@ -886,23 +811,6 @@
                         </a>
                     </div>
                 </div>
-                
-                <div class="app-card">
-                    <div class="app-icon" style="background: #e74c3c;">
-                        <i class="fas fa-fire"></i>
-                    </div>
-                    <div class="app-content">
-                        <h2>Monster Fire 2</h2>
-                        <p>Танки и сухопутные войска!</p>
-                        <span class="platform-tag"><i class="fas fa-globe"></i> Кроссплатформенный</span>
-                        <a href="https://kotnot.github.io/MonsterFire/" class="download-btn" style="background: linear-gradient(to right, #e74c3c, #c0392b);">
-                            <i class="fas fa-gamepad"></i> Играть онлайн
-                        </a>
-                        <a href="https://github.com/kotnot/MonsterFire" class="download-btn" style="margin-top: 10px; background: linear-gradient(to right, #333, #555);">
-                            <i class="fab fa-github"></i> Исходный код
-                        </a>
-                    </div>
-                </div>
             </div>
 
             <h2 class="section-title"><i class="fas fa-comments"></i> Мессенджеры Gitrex Message</h2>
@@ -937,7 +845,6 @@
                     </div>
                 </div>
 
-                <!-- Gitrex Message Mobile Android -->
                 <div class="app-card">
                     <div class="app-icon" style="background: #3ddc84;">
                         <i class="fab fa-android"></i>
@@ -1024,14 +931,9 @@
                     <div class="doc-content" id="docContent">
                         <div id="kotnot-c-doc" class="doc-section">
                             <h2><i class="fas fa-cogs"></i> Kotnot-C - Полная документация</h2>
-                            
-                            <div class="doc-note">
-                                <strong>Версия:</strong> 8.0 Ultimate | <strong>Компилятор:</strong> kc (Kotnot-C Compiler) | <strong>Лицензия:</strong> MIT
-                            </div>
-
+                            <div class="doc-note"><strong>Версия:</strong> 8.0 Ultimate | <strong>Компилятор:</strong> kc | <strong>Лицензия:</strong> MIT</div>
                             <h3>Введение</h3>
                             <p>Kotnot-C - современный язык программирования с C-подобным синтаксисом, созданный для системного и прикладного программирования.</p>
-
                             <h3>Синтаксис</h3>
                             <pre><code>// Пример программы на Kotnot-C
 import std.io;
@@ -1040,19 +942,13 @@ func main() -> int {
     println("Hello, Kotnot-C!");
     return 0;
 }</code></pre>
-                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
-                                <i class="fas fa-arrow-up"></i> Наверх
-                            </a>
+                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"><i class="fas fa-arrow-up"></i> Наверх</a>
                         </div>
-                        
                         <div id="kotnot-net-doc" class="doc-section" style="display: none;">
                             <h2><i class="fas fa-link"></i> KotnotNET - Платформа для Windows</h2>
-                            <div class="doc-note">
-                                <strong>Версия:</strong> 1.0 | <strong>Платформа:</strong> Windows
-                            </div>
+                            <div class="doc-note"><strong>Версия:</strong> 1.0 | <strong>Платформа:</strong> Windows</div>
                             <h3>Описание</h3>
                             <p>KotnotNET - платформа для разработки и запуска приложений на Kotnot-C. Включает в себя компилятор, отладчик и среду выполнения.</p>
-                            
                             <h3>Возможности</h3>
                             <ul>
                                 <li>Компиляция кода Kotnot-C в исполняемые файлы</li>
@@ -1060,77 +956,39 @@ func main() -> int {
                                 <li>Библиотека стандартных классов</li>
                                 <li>Поддержка многопоточности</li>
                             </ul>
-                            
-                            <h3>Установка</h3>
-                            <p>Скачайте установщик с главной страницы и запустите его. Следуйте инструкциям мастера установки.</p>
-                            
-                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
-                                <i class="fas fa-arrow-up"></i> Наверх
-                            </a>
+                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"><i class="fas fa-arrow-up"></i> Наверх</a>
                         </div>
-
                         <div id="kotnot-ai-doc" class="doc-section" style="display: none;">
                             <h2><i class="fas fa-robot"></i> KotnotAI - Документация</h2>
-                            <div class="doc-note">
-                                <strong>Версия:</strong> 2.0 | <strong>Платформа:</strong> Веб
-                            </div>
-                            <h3>Описание</h3>
+                            <div class="doc-note"><strong>Версия:</strong> 2.0 | <strong>Платформа:</strong> Веб</div>
                             <p>KotnotAI - нейросеть для обработки текста и генерации изображений.</p>
-                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
-                                <i class="fas fa-arrow-up"></i> Наверх
-                            </a>
+                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"><i class="fas fa-arrow-up"></i> Наверх</a>
                         </div>
-
                         <div id="browser-zet-doc" class="doc-section" style="display: none;">
                             <h2><i class="fas fa-globe"></i> Browser Zet - Документация</h2>
-                            <div class="doc-note">
-                                <strong>Версия:</strong> 1.0 | <strong>Платформа:</strong> Windows
-                            </div>
-                            <h3>Описание</h3>
-                            <p>Browser Zet - легкий и быстрый браузер.</p>
-                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
-                                <i class="fas fa-arrow-up"></i> Наверх
-                            </a>
+                            <div class="doc-note"><strong>Версия:</strong> 1.0 | <strong>Платформа:</strong> Windows</div>
+                            <p>Browser Zet - легкий и быстрый браузер с поддержкой вкладок и защитой от слежки.</p>
+                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"><i class="fas fa-arrow-up"></i> Наверх</a>
                         </div>
-
                         <div id="gitrex-message-doc" class="doc-section" style="display: none;">
                             <h2><i class="fas fa-comments"></i> Gitrex Message - Документация</h2>
-                            <div class="doc-note">
-                                <strong>Версия:</strong> 1.5 | <strong>Платформы:</strong> Windows, Linux, Android
-                            </div>
-                            <h3>Описание</h3>
-                            <p>Gitrex Message - безопасный мессенджер с поддержкой всех платформ.</p>
-                            
+                            <div class="doc-note"><strong>Версия:</strong> 1.5 | <strong>Платформы:</strong> Windows, Linux, Android</div>
+                            <p>Безопасный мессенджер с поддержкой всех платформ. Шифрование переписки, голосовые сообщения, стикеры и групповые чаты.</p>
                             <h3>Установка на Android</h3>
                             <p>Скачайте APK файл с главной страницы и установите его на ваше устройство. Разрешите установку из неизвестных источников в настройках Android.</p>
-                            
-                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
-                                <i class="fas fa-arrow-up"></i> Наверх
-                            </a>
+                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"><i class="fas fa-arrow-up"></i> Наверх</a>
                         </div>
-
                         <div id="gitrexos-doc" class="doc-section" style="display: none;">
                             <h2><i class="fas fa-laptop-code"></i> GitrexOS - Документация</h2>
-                            <div class="doc-note">
-                                <strong>Версия:</strong> 1.0 | <strong>Архитектура:</strong> x86
-                            </div>
-                            <h3>Описание</h3>
-                            <p>GitrexOS - собственная операционная система.</p>
-                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
-                                <i class="fas fa-arrow-up"></i> Наверх
-                            </a>
+                            <div class="doc-note"><strong>Версия:</strong> 1.0 | <strong>Архитектура:</strong> x86</div>
+                            <p>Собственная операционная система GitrexOS. Поддерживает файловый менеджер, текстовый редактор и среду разработки GPF Studio.</p>
+                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"><i class="fas fa-arrow-up"></i> Наверх</a>
                         </div>
-
                         <div id="zetoshop-doc" class="doc-section" style="display: none;">
                             <h2><i class="fas fa-paint-brush"></i> ZetoShop - Документация</h2>
-                            <div class="doc-note">
-                                <strong>Версия:</strong> 1.0 | <strong>Платформа:</strong> Windows
-                            </div>
-                            <h3>Описание</h3>
-                            <p>ZetoShop - графический редактор.</p>
-                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
-                                <i class="fas fa-arrow-up"></i> Наверх
-                            </a>
+                            <div class="doc-note"><strong>Версия:</strong> 1.0 | <strong>Платформа:</strong> Windows</div>
+                            <p>Графический редактор ZetoShop для обработки изображений с поддержкой слоев, фильтров и различных инструментов рисования.</p>
+                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"><i class="fas fa-arrow-up"></i> Наверх</a>
                         </div>
                     </div>
                 </div>
@@ -1140,36 +998,24 @@ func main() -> int {
         <footer>
             <p>2025 Perfectic Inc</p>
             <div style="margin-top: 15px;">
-                <a href="https://github.com/kotnot" style="color: #333; text-decoration: none; margin: 0 10px;">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                <a href="https://www.youtube.com/@kotnot01" style="color: #ff0000; text-decoration: none; margin: 0 10px;">
-                    <i class="fab fa-youtube"></i> YouTube
-                </a>
-                <a href="https://t.me/KotnotLive" style="color: #0088cc; text-decoration: none; margin: 0 10px;">
-                    <i class="fab fa-telegram"></i> Telegram
-                </a>
+                <a href="https://github.com/kotnot" style="color: #333; text-decoration: none; margin: 0 10px;"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://www.youtube.com/@kotnot01" style="color: #ff0000; text-decoration: none; margin: 0 10px;"><i class="fab fa-youtube"></i> YouTube</a>
+                <a href="https://t.me/KotnotLive" style="color: #0088cc; text-decoration: none; margin: 0 10px;"><i class="fab fa-telegram"></i> Telegram</a>
             </div>
         </footer>
     </div>
 
     <script>
         function showPage(pageName) {
-            const pages = ['main', 'doc'];
-            pages.forEach(p => {
-                const page = document.getElementById(`${p}-page`);
-                if (page) page.classList.remove('active');
-            });
-            const targetPage = document.getElementById(`${pageName}-page`);
-            if (targetPage) targetPage.classList.add('active');
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(`${pageName}-page`).classList.add('active');
             document.title = `Perfectic Inc - ${pageName === 'main' ? 'Главная' : 'Документация'}`;
             history.pushState({page: pageName}, '', `#${pageName}`);
         }
 
         function showDocSection(sectionId) {
             document.querySelectorAll('.doc-section').forEach(s => s.style.display = 'none');
-            const target = document.getElementById(sectionId);
-            if (target) target.style.display = 'block';
+            document.getElementById(sectionId).style.display = 'block';
             document.querySelectorAll('.doc-menu a').forEach(l => l.classList.remove('active'));
             const activeLink = document.querySelector(`.doc-menu a[href="#${sectionId}"]`);
             if (activeLink) activeLink.classList.add('active');
@@ -1179,7 +1025,6 @@ func main() -> int {
         function searchDocs() {
             const searchTerm = document.getElementById('docSearch').value.toLowerCase();
             if (searchTerm.length < 2) return;
-            
             let found = false;
             document.querySelectorAll('.doc-section').forEach(section => {
                 if (section.textContent.toLowerCase().includes(searchTerm)) {
@@ -1189,24 +1034,7 @@ func main() -> int {
                     section.style.display = 'none';
                 }
             });
-            
             if (!found) alert('Ничего не найдено');
-        }
-
-        function showRecaptcha() {
-            const overlay = document.getElementById('recaptchaOverlay');
-            if (overlay) overlay.classList.add('active');
-        }
-
-        function confirmRecaptcha() {
-            const overlay = document.getElementById('recaptchaOverlay');
-            if (overlay) overlay.classList.remove('active');
-            sessionStorage.setItem('recaptchaPassed', 'true');
-        }
-
-        function cancelRecaptcha() {
-            const overlay = document.getElementById('recaptchaOverlay');
-            if (overlay) overlay.classList.remove('active');
         }
 
         window.addEventListener('popstate', function() {
@@ -1244,10 +1072,6 @@ func main() -> int {
                     if (href) showDocSection(href.substring(1));
                 });
             });
-            
-            if (!sessionStorage.getItem('recaptchaPassed')) {
-                setTimeout(showRecaptcha, 1000);
-            }
         });
     </script>
 </body>
