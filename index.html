@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Perfectic Inc - Главная</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -253,6 +253,17 @@
             font-weight: 600;
             margin-top: 5px;
             margin-bottom: 15px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .button-group .download-btn:first-child {
+            margin-bottom: 0;
         }
 
         .os-section {
@@ -724,7 +735,7 @@
                     </div>
                 </div>
                 
-                <!-- Monster Fire 2 -->
+                <!-- Monster Fire 2 (Web + NEW Mobile APK) -->
                 <div class="app-card">
                     <div class="app-icon" style="background: #e74c3c;">
                         <i class="fas fa-fire"></i>
@@ -732,13 +743,18 @@
                     <div class="app-content">
                         <h2>Monster Fire 2</h2>
                         <p>Танки и сухопутные войска! Эпичный экшен с монстрами и огнем. Уничтожай врагов и спасай мир!</p>
-                        <span class="platform-tag"><i class="fas fa-globe"></i> Кроссплатформенный</span>
-                        <a href="https://kotnot.github.io/MonsterFire/" class="download-btn" style="background: linear-gradient(to right, #e74c3c, #c0392b);">
-                            <i class="fas fa-gamepad"></i> Играть онлайн (Monster Fire 2)
-                        </a>
-                        <a href="https://github.com/kotnot/MonsterFire" class="download-btn" style="margin-top: 10px; background: linear-gradient(to right, #333, #555);">
-                            <i class="fab fa-github"></i> Исходный код
-                        </a>
+                        <span class="platform-tag"><i class="fas fa-globe"></i> Кроссплатформенный + Android</span>
+                        <div class="button-group">
+                            <a href="https://kotnot.github.io/MonsterFire/" class="download-btn" style="background: linear-gradient(to right, #e74c3c, #c0392b);">
+                                <i class="fas fa-gamepad"></i> Играть онлайн (Web)
+                            </a>
+                            <a href="https://drive.google.com/file/d/1IH76Sl9VyyvzJtDerBTIJHm-fpZLPTfy/view?usp=drive_link" class="download-btn" style="background: linear-gradient(to right, #f39c12, #e67e22);">
+                                <i class="fab fa-android"></i> Monster Fire 2 Mobile (APK)
+                            </a>
+                            <a href="https://github.com/kotnot/MonsterFire" class="download-btn" style="background: linear-gradient(to right, #333, #555);">
+                                <i class="fab fa-github"></i> Исходный код
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
@@ -756,7 +772,7 @@
                     </div>
                 </div>
                 
-                <!-- Spartan - теперь активная ссылка! -->
+                <!-- Spartan (Web + NEW Mobile APK) -->
                 <div class="app-card">
                     <div class="app-icon" style="background: #c0392b;">
                         <i class="fas fa-shield-alt"></i>
@@ -764,10 +780,15 @@
                     <div class="app-content">
                         <h2>Spartan</h2>
                         <p>Эпическая игра о спартанцах, битвах и доблести. Сражайся с врагами, защищай родину и стань легендарным воином!</p>
-                        <span class="platform-tag"><i class="fas fa-globe"></i> Кроссплатформенный</span>
-                        <a href="https://kotnot.github.io/Spartan/" class="download-btn" style="background: linear-gradient(to right, #c0392b, #96281b);">
-                            <i class="fas fa-gamepad"></i> Играть в Spartan
-                        </a>
+                        <span class="platform-tag"><i class="fas fa-globe"></i> Кроссплатформенный + Android</span>
+                        <div class="button-group">
+                            <a href="https://kotnot.github.io/Spartan/" class="download-btn" style="background: linear-gradient(to right, #c0392b, #96281b);">
+                                <i class="fas fa-gamepad"></i> Играть онлайн (Web)
+                            </a>
+                            <a href="https://drive.google.com/file/d/1M3SiBYeoOMG3houMH867dBrOKn8DQVog/view?usp=drive_link" class="download-btn" style="background: linear-gradient(to right, #8e44ad, #6c3483);">
+                                <i class="fab fa-android"></i> Spartan Mobile (APK)
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
@@ -927,6 +948,7 @@
                             <li><a href="#gitrexos-doc" onclick="showDocSection('gitrexos-doc')"><i class="fas fa-laptop-code"></i> GitrexOS</a></li>
                             <li><a href="#zetoshop-doc" onclick="showDocSection('zetoshop-doc')"><i class="fas fa-paint-brush"></i> ZetoShop</a></li>
                             <li><a href="#spartan-doc" onclick="showDocSection('spartan-doc')"><i class="fas fa-shield-alt"></i> Spartan</a></li>
+                            <li><a href="#monsterfire-mobile-doc" onclick="showDocSection('monsterfire-mobile-doc')"><i class="fas fa-fire"></i> MonsterFire Mobile</a></li>
                         </ul>
                     </div>
 
@@ -951,13 +973,6 @@ func main() -> int {
                             <div class="doc-note"><strong>Версия:</strong> 1.0 | <strong>Платформа:</strong> Windows</div>
                             <h3>Описание</h3>
                             <p>KotnotNET - платформа для разработки и запуска приложений на Kotnot-C. Включает в себя компилятор, отладчик и среду выполнения.</p>
-                            <h3>Возможности</h3>
-                            <ul>
-                                <li>Компиляция кода Kotnot-C в исполняемые файлы</li>
-                                <li>Встроенный отладчик с точками останова</li>
-                                <li>Библиотека стандартных классов</li>
-                                <li>Поддержка многопоточности</li>
-                            </ul>
                             <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"><i class="fas fa-arrow-up"></i> Наверх</a>
                         </div>
                         <div id="kotnot-ai-doc" class="doc-section" style="display: none;">
@@ -976,8 +991,6 @@ func main() -> int {
                             <h2><i class="fas fa-comments"></i> Gitrex Message - Документация</h2>
                             <div class="doc-note"><strong>Версия:</strong> 1.5 | <strong>Платформы:</strong> Windows, Linux, Android</div>
                             <p>Безопасный мессенджер с поддержкой всех платформ. Шифрование переписки, голосовые сообщения, стикеры и групповые чаты.</p>
-                            <h3>Установка на Android</h3>
-                            <p>Скачайте APK файл с главной страницы и установите его на ваше устройство. Разрешите установку из неизвестных источников в настройках Android.</p>
                             <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"><i class="fas fa-arrow-up"></i> Наверх</a>
                         </div>
                         <div id="gitrexos-doc" class="doc-section" style="display: none;">
@@ -994,18 +1007,16 @@ func main() -> int {
                         </div>
                         <div id="spartan-doc" class="doc-section" style="display: none;">
                             <h2><i class="fas fa-shield-alt"></i> Spartan - Документация</h2>
-                            <div class="doc-note"><strong>Версия:</strong> 1.0 | <strong>Платформа:</strong> Веб (Кроссплатформенный)</div>
-                            <p>Эпическая игра о спартанцах, битвах и доблести. Сражайся с врагами, защищай родину и стань легендарным воином!</p>
-                            <h3>Как играть</h3>
-                            <p>Управление: WASD или стрелки для движения, мышь для прицеливания, левая кнопка мыши для атаки.</p>
-                            <h3>Особенности</h3>
-                            <ul>
-                                <li>Динамичные битвы с врагами</li>
-                                <li>Прогрессия и улучшения</li>
-                                <li>Различные виды оружия</li>
-                                <li>Эпические боссы</li>
-                            </ul>
-                            <p><a href="https://kotnot.github.io/Spartan/" target="_blank" style="color: #4285f4;">Играть в Spartan онлайн</a></p>
+                            <div class="doc-note"><strong>Версия:</strong> 1.0 | <strong>Платформа:</strong> Веб + Android</div>
+                            <p>Эпическая игра о спартанцах. Доступна онлайн и в виде APK для мобильных устройств.</p>
+                            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"><i class="fas fa-arrow-up"></i> Наверх</a>
+                        </div>
+                        <div id="monsterfire-mobile-doc" class="doc-section" style="display: none;">
+                            <h2><i class="fas fa-fire"></i> Monster Fire 2 Mobile</h2>
+                            <div class="doc-note"><strong>Версия:</strong> 2.0 | <strong>Платформа:</strong> Android APK</div>
+                            <p>Monster Fire 2 теперь доступен на Android! Скачивайте APK и сражайтесь с ордами монстров где угодно.</p>
+                            <h3>Установка</h3>
+                            <p>Разрешите установку из неизвестных источников в настройках Android, затем откройте загруженный APK-файл.</p>
                             <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"><i class="fas fa-arrow-up"></i> Наверх</a>
                         </div>
                     </div>
@@ -1063,7 +1074,7 @@ func main() -> int {
                 showPage('doc');
             } else if (hash) {
                 showPage('doc');
-                showDocSection(hash);
+                if (document.getElementById(hash)) showDocSection(hash);
             } else {
                 showPage('main');
             }
@@ -1075,7 +1086,9 @@ func main() -> int {
                 showPage('doc');
             } else if (hash) {
                 showPage('doc');
-                setTimeout(() => showDocSection(hash), 100);
+                setTimeout(() => {
+                    if (document.getElementById(hash)) showDocSection(hash);
+                }, 100);
             } else {
                 showPage('main');
             }
@@ -1087,7 +1100,7 @@ func main() -> int {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const href = this.getAttribute('href');
-                    if (href) showDocSection(href.substring(1));
+                    if (href && href !== '#') showDocSection(href.substring(1));
                 });
             });
         });
